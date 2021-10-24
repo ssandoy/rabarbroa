@@ -12,6 +12,10 @@
 /.next/
 /out/
 
+.idea
+
+.husky
+
 # production
 /build
 
