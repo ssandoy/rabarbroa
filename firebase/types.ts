@@ -4,4 +4,10 @@ export type Image = {
   title: string;
   price: number;
   size: string;
+  description?: string;
+  sold: boolean;
 };
+
+export enum INDICES {
+  PICTURES_INDEX = "pictures",
+}

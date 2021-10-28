@@ -1,12 +1,16 @@
 import Link from "next/link";
+import Image from "next/image";
+import { Image as ImageType, INDICES } from "../../firebase/types";
 import PageWrapper from "../../components/page-wrapper/page-wrapper";
-import { GetStaticProps } from "next";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 import React from "react";
 import styled from "@emotion/styled";
 import { formatPictureRoute, PICTURES_ROUTE } from "../../routes/routes";
+import { device } from "../../styles/mixins";
+import firebase from "../../firebase/init";
 
 const MainContent = styled.main`
-  padding: 0 5rem;
+  padding: 0 2rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -15,36 +19,42 @@ const MainContent = styled.main`
 `;
 
 const PicturesGrid = styled.ul`
-  // todo grid instead? need to be columns
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 3rem;
-
-  @media (max-width: 600px) {
-    // todo mixin...
-    width: 100%;
-    flex-direction: column;
+  column-count: 3;
+  list-style: none outside;
+  column-gap: 2em;
+  row-gap: 2em;
+  padding-inline-start: 0;
+  @media (${device.FOR_PHONE_ONLY}) {
+    column-count: 1;
   }
 `;
 
 // todo Link from Next?
-const CardLink = styled.a`
-  margin: 1rem;
-  flex-basis: 20%;
+const ListItem = styled.li`
   padding: 1.5rem;
+  margin-bottom: 3em; // todo
+  break-inside: avoid;
   color: white;
   text-align: left;
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
 
   :hover {
     border-color: #0070f3;
   }
 `;
+
+const CardLink = styled.a`
+  color: inherit;
+  text-decoration: none;
+`;
+
+type Props = {
+  images: ImageType[];
+};
 
 // fixme types etterhvert..
 const Pictures = ({ images }) => {
@@ -55,13 +65,17 @@ const Pictures = ({ images }) => {
         <h1>Bilder</h1>
         <PicturesGrid>
           {images.map((image) => (
-            <CardLink
-              href={formatPictureRoute(image.path.split(".")[0].split("/")[2])}
-            >
-              <img src={image.path} alt={image.alt} width="100%" />
-              <p>{image.title}</p>
-              <p>{image.price}</p>
-            </CardLink>
+            <ListItem key={image.title}>
+              <Link href={formatPictureRoute(image.title.replace(" ", "-"))}>
+                <CardLink
+                  href={formatPictureRoute(image.title.replace(" ", "-"))}
+                >
+                  <img src={image.href} alt={image.alt} width="100%" />
+                  <p>{image.title}</p>
+                  <p>{image.price}</p>
+                </CardLink>
+              </Link>
+            </ListItem>
           ))}
         </PicturesGrid>
       </MainContent>
@@ -70,59 +84,17 @@ const Pictures = ({ images }) => {
 };
 
 // vs getServerSideProps(context) for each request, which may be useful in some cases..
-export const getStaticProps: GetStaticProps = async () => {
-  const images = [
-    {
-      path: "/images/mange-bilder.jpg",
-      height: 200,
-      width: 200,
-      alt: "Mange bilder",
-      title: "Mange bilder",
-      price: 1000,
-    },
-    {
-      path: "/images/fargerik.jpg",
-      height: 200,
-      width: 200,
-      alt: "Fargerik",
-      title: "Farger",
-      price: 1000,
-    },
-    {
-      path: "/images/ballonger.png",
-      height: 200,
-      width: 200,
-      alt: "Ballonger",
-      title: "Ballonger",
-      price: 1000,
-    },
-    {
-      path: "/images/ansikt.png",
-      height: 200,
-      width: 200,
-      alt: "Ansikt",
-      title: "Ansikt",
-      price: 1000,
-    },
-    {
-      path: "/images/ond-stemor.png",
-      height: 200,
-      width: 200,
-      alt: "Ansikt",
-      title: "Ond stemor",
-      price: 1000,
-    },
-    {
-      path: "/images/mange-bilder.jpg",
-      height: 200,
-      width: 200,
-      alt: "Mange bilder",
-      title: "Tittel",
-      price: 1000,
-    },
-  ];
+export const getStaticProps: GetStaticProps = async (): Promise<
+  GetStaticPropsResult<Props>
+> => {
+  const snapshot = await firebase
+    .firestore()
+    .collection(INDICES.PICTURES_INDEX)
+    .get();
+  const images = snapshot.docs.map((doc) => doc.data()) as ImageType[];
   return {
     props: { images },
+    revalidate: 60,
   };
 };
 

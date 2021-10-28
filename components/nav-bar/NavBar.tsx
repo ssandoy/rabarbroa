@@ -7,7 +7,7 @@ const Container = styled.div`
   display: flex;
   padding-top: 16px;
   justify-content: center;
-  font-size: 0.5rem;
+  font-size: 1rem;
 `;
 
 const NavBar = () => {
