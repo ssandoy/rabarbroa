@@ -14,7 +14,6 @@ const MainContent = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 `;
 
@@ -25,14 +24,14 @@ const PicturesGrid = styled.ul`
   row-gap: 2em;
   padding-inline-start: 0;
   @media (${device.FOR_PHONE_ONLY}) {
-    column-count: 1;
+    column-count: 2;
   }
 `;
 
 // todo Link from Next?
 const ListItem = styled.li`
-  padding: 1.5rem;
-  margin-bottom: 3em; // todo
+  padding: 1em;
+  margin-bottom: 2em;
   break-inside: avoid;
   color: white;
   text-align: left;
@@ -56,9 +55,7 @@ type Props = {
   images: ImageType[];
 };
 
-// fixme types etterhvert..
-const Pictures = ({ images }) => {
-  // todo load from womeshere
+const Pictures: React.FC<Props> = ({ images }) => {
   return (
     <PageWrapper>
       <MainContent>
@@ -70,7 +67,7 @@ const Pictures = ({ images }) => {
                 <CardLink
                   href={formatPictureRoute(image.title.replace(" ", "-"))}
                 >
-                  <img src={image.href} alt={image.alt} width="100%" />
+                  <img src={image.href} alt={image.title} width="100%" />
                   <p>{image.title}</p>
                   <p>{image.price}</p>
                 </CardLink>
@@ -83,7 +80,6 @@ const Pictures = ({ images }) => {
   );
 };
 
-// vs getServerSideProps(context) for each request, which may be useful in some cases..
 export const getStaticProps: GetStaticProps = async (): Promise<
   GetStaticPropsResult<Props>
 > => {

@@ -3,6 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import { NextButton, PrevButton } from "./embla-button";
+import { device } from "../../styles/mixins";
 
 type Props = {
   images: { path: string; height: number; width: number; alt: string }[];
@@ -23,7 +24,10 @@ const EmblaContainer = styled.div`
 
 const EmblaSlide = styled.div`
   position: relative;
-  flex: 0 0 33%; /* Slide covers 50% of the viewport */
+  flex: 0 0 33%;
+  @media (${device.FOR_PHONE_ONLY}) {
+    flex: 0 0 100%; /* Slide covers 100% of the viewport */
+  }
 `;
 
 // fixme styling for mobile..
@@ -47,8 +51,8 @@ const EmblaCarousel: React.FC<Props> = ({ images }) => {
             <EmblaSlide key={idx}>
               <Image
                 src={image.path}
-                height={image.height ?? 144} // Desired size with correct aspect ratio
-                width={image.width ?? 144} // Desired size with correct aspect ratio
+                height={image.height ?? 250} // Desired size with correct aspect ratio
+                width={image.width ?? 250} // Desired size with correct aspect ratio
                 alt={image.alt}
               />
             </EmblaSlide>

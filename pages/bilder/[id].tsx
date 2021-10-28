@@ -1,6 +1,5 @@
 import Link from "next/link";
 import PageWrapper from "../../components/page-wrapper/page-wrapper";
-import { getPictureData } from "../../lib/pictures";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import { Image as ImageType, INDICES } from "../../firebase/types";
 import Head from "next/head";

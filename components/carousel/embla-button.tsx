@@ -20,10 +20,10 @@ const EmblaButton = styled.button<ButtonProps>`
   height: 30px;
   justify-content: center;
   align-items: center;
-  fill: black;
+  fill: azure;
   padding: 0;
-  left: ${({ isPrevious }) => (isPrevious ? "27px" : "100")};
-  right: ${({ isPrevious }) => (isPrevious ? "100" : "27px")};
+  left: ${({ isPrevious }) => (isPrevious ? "-25px" : "100")};
+  right: ${({ isPrevious }) => (isPrevious ? "100" : "-25px")};
 `;
 
 const Svg = styled.svg`
