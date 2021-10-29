@@ -76,7 +76,10 @@ const ImageUploadPage = () => {
         <Input {...register("title", { required: true })} />
         {errors.title && <ErrorSpan>Du må skrive inn tittel</ErrorSpan>}
         <Label>Pris</Label>
-        <Input type="number" {...register("price", { required: true })} />
+        <Input
+          type="number"
+          {...register("price", { required: true, valueAsNumber: true })}
+        />
         {errors.price && <ErrorSpan>Du må skrive inn pris</ErrorSpan>}
         <Label>Størrelse</Label>
         <Input {...register("size", { required: true })} />

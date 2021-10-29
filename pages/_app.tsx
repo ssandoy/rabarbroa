@@ -5,18 +5,21 @@ import { AdminProvider } from "../context/admin/AdminContext";
 import Head from "next/head";
 import React from "react";
 import "react-image-crop/dist/ReactCrop.css";
+import { ShoppingCardProvider } from "../context/cart/ShoppingCartContext";
 
 const App = ({ Component, pageProps }) => {
   return (
     <AdminProvider>
-      <Head>
-        <title>Rababroa</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      {globalStyles}
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
+      <ShoppingCardProvider>
+        <Head>
+          <title>Rababroa</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        {globalStyles}
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+      </ShoppingCardProvider>
     </AdminProvider>
   );
 };

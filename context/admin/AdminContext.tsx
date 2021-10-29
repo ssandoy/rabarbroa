@@ -24,7 +24,7 @@ const AdminProvider = (props) => {
 const useAdminContext = () => {
   const context = React.useContext(AdminContext);
   if (!context) {
-    throw new Error(`useAppContext must be used within a AppProvider`);
+    throw new Error(`useAdminContext must be used within a AdminProvider`);
   }
   return context;
 };

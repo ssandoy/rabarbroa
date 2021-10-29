@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { Image as ImageType, INDICES } from "../../firebase/types";
 import PageWrapper from "../../components/page-wrapper/page-wrapper";
+import numberFormat from "underscore.string/numberFormat";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import React from "react";
 import styled from "@emotion/styled";
 import { formatPictureRoute } from "../../routes/routes";
 import { device } from "../../styles/mixins";
 import firebase from "../../firebase/init";
+import { useShoppingCartContext } from "../../context/cart/ShoppingCartContext";
 
 const MainContent = styled.main`
   padding: 0 2rem;
@@ -51,11 +53,18 @@ const CardLink = styled.a`
   text-decoration: none;
 `;
 
+// this adds space between every third number
+export const formatPrice = (price: number) => {
+  return `kr ${numberFormat(price, 0, " ", " ")}`;
+};
+
 type Props = {
   images: ImageType[];
 };
 
 const Pictures: React.FC<Props> = ({ images }) => {
+  const { items } = useShoppingCartContext();
+  console.log(items);
   return (
     <PageWrapper>
       <MainContent>
@@ -69,7 +78,7 @@ const Pictures: React.FC<Props> = ({ images }) => {
                 >
                   <img src={image.href} alt={image.title} width="100%" />
                   <p>{image.title}</p>
-                  <p>{image.price}</p>
+                  <p>{formatPrice(image.price)}</p>
                 </CardLink>
               </Link>
             </ListItem>

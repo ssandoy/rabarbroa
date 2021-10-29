@@ -9,6 +9,8 @@ import { PICTURES_ROUTE } from "../../routes/routes";
 import { device } from "../../styles/mixins";
 import firebase from "../../firebase/init";
 import { Button } from "../../styles/global";
+import { formatPrice } from "./index";
+import { useShoppingCartContext } from "../../context/cart/ShoppingCartContext";
 
 const ImageContainer = styled.div`
   margin: 2em;
@@ -33,6 +35,7 @@ type Props = {
 
 // fixme types etterhvert..
 const Id: React.FC<Props> = ({ image }) => {
+  const { setItems } = useShoppingCartContext();
   return (
     <PageWrapper>
       <Head>
@@ -47,10 +50,10 @@ const Id: React.FC<Props> = ({ image }) => {
           <Image src={image.href} alt={image.title} />
           <InfoContainer>
             <h1>{image.title}</h1>
-            <p>{image.price}</p>
+            <p>{formatPrice(image.price)}</p>
             <p>{image.size}</p>
             <Button
-            // todo onclick
+              onClick={() => setItems((prevItems) => [...prevItems, image])}
             >
               Legg til i handlevogn
             </Button>
