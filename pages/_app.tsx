@@ -6,7 +6,7 @@ import Head from "next/head";
 import React from "react";
 import "react-image-crop/dist/ReactCrop.css";
 
-const App = ({ Component, pageProps, props }) => {
+const App = ({ Component, pageProps }) => {
   return (
     <AdminProvider>
       <Head>
@@ -14,26 +14,11 @@ const App = ({ Component, pageProps, props }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {globalStyles}
-      <Header logo={pageProps.logo} />
+      <Header />
       <Component {...pageProps} />
       <Footer />
     </AdminProvider>
   );
-};
-
-export const getStaticProps = async () => {
-  // todo svg and inside header instead...
-  const logo = {
-    path: "/images/header-logo.png",
-    height: 200,
-    width: 200,
-    alt: "Logo",
-  };
-  return {
-    props: {
-      logo,
-    },
-  };
 };
 
 export default App;

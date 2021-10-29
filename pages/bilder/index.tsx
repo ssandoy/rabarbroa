@@ -1,11 +1,10 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Image as ImageType, INDICES } from "../../firebase/types";
 import PageWrapper from "../../components/page-wrapper/page-wrapper";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import React from "react";
 import styled from "@emotion/styled";
-import { formatPictureRoute, PICTURES_ROUTE } from "../../routes/routes";
+import { formatPictureRoute } from "../../routes/routes";
 import { device } from "../../styles/mixins";
 import firebase from "../../firebase/init";
 
@@ -15,6 +14,7 @@ const MainContent = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 80vw;
 `;
 
 const PicturesGrid = styled.ul`
@@ -83,6 +83,7 @@ const Pictures: React.FC<Props> = ({ images }) => {
 export const getStaticProps: GetStaticProps = async (): Promise<
   GetStaticPropsResult<Props>
 > => {
+  // todo consider react-firebase-hooks inside component for live updates
   const snapshot = await firebase
     .firestore()
     .collection(INDICES.PICTURES_INDEX)

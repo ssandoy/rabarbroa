@@ -8,11 +8,12 @@ import styled from "@emotion/styled";
 import { PICTURES_ROUTE } from "../../routes/routes";
 import { device } from "../../styles/mixins";
 import firebase from "../../firebase/init";
+import { Button } from "../../styles/global";
 
 const ImageContainer = styled.div`
   margin: 2em;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr;
   @media (${device.FOR_PHONE_ONLY}) {
     grid-template-columns: 1fr;
@@ -48,11 +49,11 @@ const Id: React.FC<Props> = ({ image }) => {
             <h1>{image.title}</h1>
             <p>{image.price}</p>
             <p>{image.size}</p>
-            <button
+            <Button
             // todo onclick
             >
               Legg til i handlevogn
-            </button>
+            </Button>
           </InfoContainer>
         </ImageContainer>
       </section>

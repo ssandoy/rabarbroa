@@ -15,21 +15,13 @@ const Container = styled.header`
   align-items: center;
 `;
 
-type Props = {
-  logo: {
-    path: string;
-    height: number;
-    width: number;
-    alt: string;
-  };
-};
-// fix so that this ssg-s...
-const Header: React.FC<Props> = ({ logo }) => {
+const Header = () => {
   const router = useRouter();
-  // todo repace svg with actual logo..
+  // todo repace svg with actual logo.. and add pointer to it
   return (
     <Container>
       <svg
+        onClick={() => router.push(INTRO_ROUTE)}
         width="527.96005859375px"
         height="122.021240234375px"
         xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +36,7 @@ const Header: React.FC<Props> = ({ logo }) => {
             width="300%"
             height="300%"
           >
-            <feFlood flood-color="#282c34" result="flood"></feFlood>
+            <feFlood floodColor="#282c34" result="flood"></feFlood>
             <feComposite
               operator="in"
               in2="SourceAlpha"
@@ -76,22 +68,6 @@ const Header: React.FC<Props> = ({ logo }) => {
       <NavBar />
     </Container>
   );
-};
-
-export const getStaticProps: GetStaticProps = async (): Promise<
-  GetStaticPropsResult<Props>
-> => {
-  const logo = {
-    path: "/images/header-logo.png",
-    height: 200,
-    width: 200,
-    alt: "Logo",
-  };
-  return {
-    props: {
-      logo,
-    },
-  };
 };
 
 export default Header;

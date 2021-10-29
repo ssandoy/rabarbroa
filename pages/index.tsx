@@ -38,35 +38,36 @@ const Home: React.FC<Props> = ({ carouselImages }) => {
 export const getStaticProps: GetStaticProps = async (): Promise<
   GetStaticPropsResult<Props>
 > => {
+  // todo fetch given documents from firebase instead?
   const carouselImages = [
     {
       path: "/images/mange-bilder.jpg",
-      height: 200,
-      width: 200,
+      height: 300,
+      width: 300,
       alt: "Mange bilder",
     },
     {
       path: "/images/fargerik.jpg",
-      height: 200,
-      width: 200,
+      height: 300,
+      width: 300,
       alt: "Fargerik",
     },
     {
       path: "/images/ballonger.png",
-      height: 200,
-      width: 200,
+      height: 300,
+      width: 300,
       alt: "Ballonger",
     },
     {
       path: "/images/ansikt.png",
-      height: 200,
-      width: 200,
+      height: 300,
+      width: 300,
       alt: "Ansikt",
     },
     {
       path: "/images/ond-stemor.png",
-      height: 200,
-      width: 200,
+      height: 300,
+      width: 300,
       alt: "Ansikt",
     },
   ];
