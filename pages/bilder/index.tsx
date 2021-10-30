@@ -9,6 +9,7 @@ import { formatPictureRoute } from "../../routes/routes";
 import { device } from "../../styles/mixins";
 import firebase from "../../firebase/init";
 import { useShoppingCartContext } from "../../context/cart/ShoppingCartContext";
+import { Heading1 } from "../../styles/global";
 
 const MainContent = styled.main`
   padding: 0 2rem;
@@ -68,7 +69,7 @@ const Pictures: React.FC<Props> = ({ images }) => {
   return (
     <PageWrapper>
       <MainContent>
-        <h1>Bilder</h1>
+        <Heading1>Bilder</Heading1>
         <PicturesGrid>
           {images.map((image) => (
             <ListItem key={image.title}>

@@ -1,4 +1,10 @@
-import React, { Dispatch, SetStateAction, useMemo, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { Image } from "../../firebase/types";
 
 type ShoppingCartState = {
@@ -10,9 +16,22 @@ const ShoppingCartContext = React.createContext<ShoppingCartState | undefined>(
   undefined
 );
 
+export const SHOPPING_CART_KEY = "shopping-cart";
+
 const ShoppingCardProvider = (props) => {
-  // todo needs to be persisted after refresh. localStorage?
   const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const localStorageCart = localStorage.getItem(SHOPPING_CART_KEY);
+    if (localStorageCart) {
+      console.log("localStorageCart");
+      setItems(JSON.parse(localStorageCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(SHOPPING_CART_KEY, JSON.stringify(items));
+  }, [items]);
 
   const value: ShoppingCartState = useMemo(
     () => ({

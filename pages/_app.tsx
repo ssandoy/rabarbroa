@@ -14,6 +14,10 @@ const App = ({ Component, pageProps }) => {
         <Head>
           <title>Rababroa</title>
           <link rel="icon" href="/favicon.ico" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Antonio"
+            rel="stylesheet"
+          />
         </Head>
         {globalStyles}
         <Header />

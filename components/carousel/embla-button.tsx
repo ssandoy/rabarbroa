@@ -20,7 +20,7 @@ const EmblaButton = styled.button<ButtonProps>`
   height: 30px;
   justify-content: center;
   align-items: center;
-  fill: azure;
+  fill: black;
   padding: 0;
   left: ${({ isPrevious }) => (isPrevious ? "-25px" : "100")};
   right: ${({ isPrevious }) => (isPrevious ? "100" : "-25px")};

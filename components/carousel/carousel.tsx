@@ -11,9 +11,7 @@ type Props = {
 
 const Embla = styled.div`
   position: relative;
-  //background-color: #f7f7f7; // todo
   padding: 20px;
-  //max-width: 670px;
   margin-left: auto;
   margin-right: auto;
 `;

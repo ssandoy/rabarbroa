@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
 import ActiveLink from "./ActiveLink";
-import { ABOUT_ROUTE, PICTURES_ROUTE } from "../../routes/routes";
+import {
+  ABOUT_ROUTE,
+  CONTACT_ROUTE,
+  INTRO_ROUTE,
+  PICTURES_ROUTE,
+} from "../../routes/routes";
 
 const Container = styled.div`
   display: flex;
-  padding-top: 16px;
   justify-content: center;
   font-size: 1rem;
 `;
@@ -13,10 +17,10 @@ const Container = styled.div`
 const NavBar = () => {
   return (
     <Container>
+      <ActiveLink href={INTRO_ROUTE}>Forside</ActiveLink>
       <ActiveLink href={PICTURES_ROUTE}>Bilder</ActiveLink>
-      <ActiveLink href={ABOUT_ROUTE}>Om</ActiveLink>
-      <ActiveLink href="/about">FAQ</ActiveLink>
-      <ActiveLink href="/about">Contact</ActiveLink>
+      <ActiveLink href={CONTACT_ROUTE}>Kontakt</ActiveLink>
+      <ActiveLink href={ABOUT_ROUTE}>Om Rabarbroa</ActiveLink>
     </Container>
   );
 };

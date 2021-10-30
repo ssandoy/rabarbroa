@@ -1,8 +1,8 @@
 import { css, Global, keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 
-const globalBackgroundColor = "#282c34";
-const globalTextColor = "white";
+const globalBackgroundColor = "#F4F0EA";
+const globalTextColor = "black";
 
 export const globalStyles = (
   <Global
@@ -14,8 +14,7 @@ export const globalStyles = (
         background: ${globalBackgroundColor};
         color: ${globalTextColor};
         min-height: 100%;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+        font-family: Antonio, sans-serif;
         font-size: 16px;
       }
     `}
@@ -37,6 +36,17 @@ export const basicButtonStyles = css`
 // todo
 export const Button = styled.button`
   ${basicButtonStyles};
+`;
+
+export const SubmitButton = styled.button`
+  color: white;
+  height: 40px;
+  border: none;
+  background: rgba(122, 132, 117, 0.51);
+`;
+
+export const Heading1 = styled.h1`
+  font-weight: normal;
 `;
 
 // todo buttons etc here

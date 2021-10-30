@@ -4,7 +4,9 @@ function ActiveLink({ children, href }) {
   const router = useRouter();
   const style = {
     marginRight: 10,
-    color: router.asPath === href ? "white" : "black",
+    color: router.asPath === href ? "#7A8475" : "black",
+    paddingBottom: 4,
+    textDecoration: "none",
   };
 
   const handleClick = (e) => {

@@ -11,6 +11,10 @@ import firebase from "../../firebase/init";
 import { Button } from "../../styles/global";
 import { formatPrice } from "./index";
 import { useShoppingCartContext } from "../../context/cart/ShoppingCartContext";
+import {
+  imageListContainsImage,
+  removeImageFromImages,
+} from "../../firebase/domain";
 
 const ImageContainer = styled.div`
   margin: 2em;
@@ -33,9 +37,12 @@ type Props = {
   image: ImageType;
 };
 
-// fixme types etterhvert..
+// todo disable button if already in
 const Id: React.FC<Props> = ({ image }) => {
-  const { setItems } = useShoppingCartContext();
+  const { items, setItems } = useShoppingCartContext();
+
+  const imageInShoppingCart = imageListContainsImage(items)(image);
+  console.log(imageInShoppingCart);
   return (
     <PageWrapper>
       <Head>
@@ -52,11 +59,23 @@ const Id: React.FC<Props> = ({ image }) => {
             <h1>{image.title}</h1>
             <p>{formatPrice(image.price)}</p>
             <p>{image.size}</p>
-            <Button
-              onClick={() => setItems((prevItems) => [...prevItems, image])}
-            >
-              Legg til i handlevogn
-            </Button>
+            {imageInShoppingCart ? (
+              <Button
+                onClick={() => {
+                  const newItems = removeImageFromImages(items)(image);
+                  console.log(newItems);
+                  setItems(newItems);
+                }}
+              >
+                Fjern fra handlevogn
+              </Button>
+            ) : (
+              <Button
+                onClick={() => setItems((prevItems) => [...prevItems, image])}
+              >
+                Legg til i handlevogn
+              </Button>
+            )}
           </InfoContainer>
         </ImageContainer>
       </section>
