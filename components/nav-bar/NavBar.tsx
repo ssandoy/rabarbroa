@@ -20,7 +20,7 @@ const NavBar = () => {
       <ActiveLink href={INTRO_ROUTE}>Forside</ActiveLink>
       <ActiveLink href={PICTURES_ROUTE}>Bilder</ActiveLink>
       <ActiveLink href={CONTACT_ROUTE}>Kontakt</ActiveLink>
-      <ActiveLink href={ABOUT_ROUTE}>Om Rabarbroa</ActiveLink>
+      <ActiveLink href={ABOUT_ROUTE}>Om Rabarbro</ActiveLink>
     </Container>
   );
 };

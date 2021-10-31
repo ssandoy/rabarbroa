@@ -71,7 +71,7 @@ const About = () => {
         <ImageContainer>
           <Image
             src={barbro}
-            alt="Bilde av Rabarbroa"
+            alt="Bilde av Rabarbro"
             width={150}
             height={150}
           />

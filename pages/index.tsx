@@ -26,7 +26,7 @@ const Home: React.FC<Props> = ({ carouselImages }) => {
   return (
     <PageWrapper>
       <MainContent>
-        <Heading1>Rabarbroa</Heading1>
+        <Heading1>Rabarbro</Heading1>
         <EmblaCarousel images={carouselImages} />
       </MainContent>
     </PageWrapper>

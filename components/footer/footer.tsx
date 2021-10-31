@@ -11,7 +11,7 @@ const Container = styled.footer`
 `;
 
 const Footer: React.FC = () => {
-  return <Container>Powered by Rabaroa AS</Container>;
+  return <Container>Powered by Rabaro Art AS</Container>;
 };
 
 export default Footer;
