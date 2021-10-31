@@ -7,6 +7,7 @@ const Container = styled.footer`
   padding: 16px 0;
   border-top: 1px solid #eaeaea;
   justify-content: center;
+  margin-top: 24px;
 `;
 
 const Footer: React.FC = () => {

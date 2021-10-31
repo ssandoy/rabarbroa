@@ -71,4 +71,11 @@ export const Label = styled.label`
   margin-bottom: 4px;
 `;
 
+export const CardContainer = styled.div`
+  margin-top: 50px;
+  width: 350px;
+  background: rgba(255, 255, 255, 0.51);
+  box-shadow: 0px 1.5px 1.5px rgba(0, 0, 0, 0.25);
+`;
+
 // todo buttons etc here

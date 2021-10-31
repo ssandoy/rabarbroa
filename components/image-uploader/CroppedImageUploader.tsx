@@ -53,12 +53,12 @@ export const CroppedImageUploader: React.FC<Props> = ({
     null
   );
 
-  // todo message when done
   const handleUpload = async () => {
+    // fixme width of image somehjow
     if (imageElement) {
       setIsUploading(true);
       const croppedImage = await getCroppedImage(imageElement, crop, fileName);
-      const imageRef = await firebase.storage().ref().child(firebaseStorageRef); // todo ref:
+      const imageRef = await firebase.storage().ref().child(firebaseStorageRef);
       const uploadRef = imageRef.child(new Date().getTime() + "-" + fileName);
       const imageUrl = await uploadRef.put(croppedImage).then(
         (success) => {
@@ -91,7 +91,7 @@ export const CroppedImageUploader: React.FC<Props> = ({
         </p>
       </Label>
       {fileLocation && (
-        <div style={{ width: "inherit" }}>
+        <div>
           <ReactCrop
             onImageLoaded={(image) => {
               setImageElement(image);

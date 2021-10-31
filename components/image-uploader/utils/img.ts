@@ -8,8 +8,8 @@ export function getCroppedImage(
   const canvas = document.createElement("canvas");
   const scaleX = image.naturalWidth / image.width;
   const scaleY = image.naturalHeight / image.height;
-  canvas.width = crop.width === 0 ? image.width : crop.width;
-  canvas.height = crop.height === 0 ? image.height : crop.height;
+  canvas.width = crop.width === 0 ? image.naturalWidth : crop.width;
+  canvas.height = crop.height === 0 ? image.naturalHeight : crop.height;
   const ctx = canvas.getContext("2d");
   if (ctx && crop && crop.x && crop.y && crop.width && crop.height) {
     ctx.drawImage(

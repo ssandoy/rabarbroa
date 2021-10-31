@@ -18,6 +18,10 @@ const App = ({ Component, pageProps }) => {
             href="https://fonts.googleapis.com/css2?family=Antonio"
             rel="stylesheet"
           />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Great+Vibes"
+            rel="stylesheet"
+          />
         </Head>
         {globalStyles}
         <Header />
