@@ -8,7 +8,7 @@ import styled from "@emotion/styled";
 import { PICTURES_ROUTE } from "../../routes/routes";
 import { device } from "../../styles/mixins";
 import firebase from "../../firebase/init";
-import { Button } from "../../styles/global";
+import { Button, Heading1 } from "../../styles/global";
 import { formatPrice } from "./index";
 import { useShoppingCartContext } from "../../context/cart/ShoppingCartContext";
 import {
@@ -48,14 +48,16 @@ const Id: React.FC<Props> = ({ image }) => {
         <title>{image.title}</title>
       </Head>
       <h2>
-        <Link href={PICTURES_ROUTE}>Bilder</Link>
+        <Link href={PICTURES_ROUTE}>
+          <a style={{ color: "black" }}>Tilbake</a>
+        </Link>
       </h2>
       {/* Add this <section> tag below the existing <section> tag */}
       <section>
         <ImageContainer>
           <Image src={image.href} alt={image.title} />
           <InfoContainer>
-            <h1>{image.title}</h1>
+            <Heading1>{image.title}</Heading1>
             <p>{formatPrice(image.price)}</p>
             <p>{image.size}</p>
             {imageInShoppingCart ? (

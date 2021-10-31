@@ -63,7 +63,6 @@ type Props = {
 };
 
 const Pictures: React.FC<Props> = ({ images }) => {
-  const { items } = useShoppingCartContext();
   return (
     <PageWrapper>
       <MainContent>
