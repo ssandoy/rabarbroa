@@ -1,11 +1,9 @@
-import Head from "next/head";
 import PageWrapper from "../components/page-wrapper/page-wrapper";
 import styled from "@emotion/styled";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import EmblaCarousel from "../components/carousel/carousel";
 import React from "react";
-
-const Title = styled.h1``;
+import { Heading1 } from "../styles/global";
 
 type Props = {
   carouselImages: {
@@ -28,7 +26,7 @@ const Home: React.FC<Props> = ({ carouselImages }) => {
   return (
     <PageWrapper>
       <MainContent>
-        <Title>Rabarbroa</Title>
+        <Heading1>Rabarbroa</Heading1>
         <EmblaCarousel images={carouselImages} />
       </MainContent>
     </PageWrapper>

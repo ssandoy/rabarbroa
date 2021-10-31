@@ -29,6 +29,7 @@ const Table = styled.table`
 
 const TableHeader = styled.th`
   text-align: left;
+  font-weight: lighter;
 `;
 
 const DataCell = styled.td`
@@ -47,14 +48,14 @@ const CenterDataCell = styled(DataCell)`
 const TableRow = styled.tr`
   border-bottom: 1px solid black;
 `;
-// todo use merging of css-rules instead here..
+// fixme try to enable css-prop here instead..
 
 const ShoppingCart = () => {
   const { items, setItems } = useShoppingCartContext();
 
   const totalPrice = calculateTotalPrice(items);
-  console.log(items);
-  // todo wrap in form as well
+  // todo radiobuttons for frakt
+  // todo different width for image based on screensize
   return (
     <PageWrapper>
       <Heading1>Handlevogn</Heading1>
@@ -66,7 +67,7 @@ const ShoppingCart = () => {
                 <TableHeader>&nbsp;</TableHeader>
                 <TableHeader style={{ textAlign: "center" }}>Bilde</TableHeader>
                 <TableHeader>Tittel</TableHeader>
-                <TableHeader style={{ textAlign: "right" }}>Pris</TableHeader>
+                <TableHeader style={{ textAlign: "center" }}>Pris</TableHeader>
               </tr>
             </thead>
             <tbody>
@@ -82,7 +83,7 @@ const ShoppingCart = () => {
                   </CenterDataCell>
                   <CenterDataCell>
                     <a href={formatPictureRoute(item.title.replace(" ", "-"))}>
-                      <img src={item.href} alt={item.title} height={120} />
+                      <img src={item.href} alt={item.title} width={100} />
                     </a>
                   </CenterDataCell>
                   <LeftDataCell style={{ color: "#5D6956" }}>
@@ -96,7 +97,7 @@ const ShoppingCart = () => {
                 </TableRow>
               ))}
               <TableRow>
-                <CenterDataCell>Sum</CenterDataCell>
+                <LeftDataCell style={{ paddingLeft: 8 }}>Sum</LeftDataCell>
                 <LeftDataCell />
                 <LeftDataCell />
                 <LeftDataCell style={{ textAlign: "right" }}>
@@ -104,7 +105,7 @@ const ShoppingCart = () => {
                 </LeftDataCell>
               </TableRow>
               <TableRow>
-                <CenterDataCell>Frakt</CenterDataCell>
+                <LeftDataCell style={{ paddingLeft: 8 }}>Frakt</LeftDataCell>
                 <LeftDataCell />
                 <LeftDataCell>Posten u/ sporing</LeftDataCell>
                 <LeftDataCell style={{ textAlign: "right" }}>
@@ -112,7 +113,7 @@ const ShoppingCart = () => {
                 </LeftDataCell>
               </TableRow>
               <TableRow>
-                <CenterDataCell>Totalsum</CenterDataCell>
+                <LeftDataCell style={{ paddingLeft: 8 }}>Totalsum</LeftDataCell>
                 <LeftDataCell />
                 <LeftDataCell />
                 <LeftDataCell style={{ textAlign: "right" }}>

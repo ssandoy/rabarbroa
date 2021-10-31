@@ -47,6 +47,27 @@ export const SubmitButton = styled.button`
 
 export const Heading1 = styled.h1`
   font-weight: normal;
+  font-size: 1.3em;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 0;
+`;
+
+export const Input = styled.input`
+  width: 300px;
+  height: 30px;
+  padding-left: 14px;
+  border: none;
+  box-shadow: inset 0px 1.5px 1.5px rgba(0, 0, 0, 0.25);
+`;
+
+export const Label = styled.label`
+  margin-bottom: 8px;
 `;
 
 // todo buttons etc here
