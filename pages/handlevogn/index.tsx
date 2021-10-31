@@ -7,12 +7,13 @@ import {
 } from "../../firebase/domain";
 import { formatPrice } from "../bilder";
 import React from "react";
+import { useForm } from "react-hook-form";
 import { device } from "../../styles/mixins";
 import { formatPictureRoute } from "../../routes/routes";
 import { Heading1, SubmitButton } from "../../styles/global";
 import { CrossIcon } from "../../components/cross/CrossIcon";
 
-const TableWrapper = styled.form`
+const Form = styled.form`
   width: 800px;
   display: flex;
   flex-direction: column;
@@ -34,6 +35,7 @@ const TableHeader = styled.th`
 
 const DataCell = styled.td`
   padding: 8px 0;
+  font-size: 0.8em;
 `;
 
 const LeftDataCell = styled(DataCell)`
@@ -45,13 +47,31 @@ const CenterDataCell = styled(DataCell)`
   cursor: pointer;
 `;
 
+const RadioButtonGroup = styled.fieldset`
+  display: flex;
+  flex-direction: column;
+  border: none;
+`;
+
+const RadioLabel = styled.label`
+  font-size: 0.7em;
+`;
+
 const TableRow = styled.tr`
   border-bottom: 1px solid black;
 `;
 // fixme try to enable css-prop here instead..
+// todo form
 
 const ShoppingCart = () => {
-  const { items, setItems } = useShoppingCartContext();
+  const { items, setItems, shippingType, setShippingType } =
+    useShoppingCartContext();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
   const totalPrice = calculateTotalPrice(items);
   // todo radiobuttons for frakt
@@ -60,7 +80,7 @@ const ShoppingCart = () => {
     <PageWrapper>
       <Heading1>Handlevogn</Heading1>
       {items.length > 0 ? (
-        <TableWrapper>
+        <Form>
           <Table>
             <thead>
               <tr>
@@ -107,7 +127,44 @@ const ShoppingCart = () => {
               <TableRow>
                 <LeftDataCell style={{ paddingLeft: 8 }}>Frakt</LeftDataCell>
                 <LeftDataCell />
-                <LeftDataCell>Posten u/ sporing</LeftDataCell>
+                <LeftDataCell>
+                  <RadioButtonGroup id="shipping">
+                    <div style={{ display: "flex" }}>
+                      <input
+                        type="radio"
+                        value="SPORING"
+                        name="shipping"
+                        id="usporing"
+                        onClick={() => setShippingType("USPORING")}
+                      />
+                      <RadioLabel htmlFor="usporing">
+                        Posten u/ sporing
+                      </RadioLabel>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        id="sporing"
+                        value="SPORING"
+                        name="shipping"
+                        onClick={() => setShippingType("SPORING")}
+                      />
+                      <RadioLabel htmlFor="sporing">
+                        Posten m/ sporing
+                      </RadioLabel>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        id="hente"
+                        value="HENTE"
+                        name="shipping"
+                        onClick={() => setShippingType("HENTE")}
+                      />
+                      <RadioLabel htmlFor="hente">Hente på toft</RadioLabel>
+                    </div>
+                  </RadioButtonGroup>
+                </LeftDataCell>
                 <LeftDataCell style={{ textAlign: "right" }}>
                   {formatPrice(189)}
                 </LeftDataCell>
@@ -125,12 +182,12 @@ const ShoppingCart = () => {
           <SubmitButton style={{ marginTop: 24 }} type="submit">
             Fortsett til betaling
           </SubmitButton>
-        </TableWrapper>
+        </Form>
       ) : (
-        <TableWrapper>
+        <Form>
           <p>Handlevognen er for øyeblikket tom.</p>
           Gå til bilder her via knapp
-        </TableWrapper>
+        </Form>
       )}
     </PageWrapper>
   );
