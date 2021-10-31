@@ -38,13 +38,14 @@ const ListItem = styled.li`
   break-inside: avoid;
   text-align: left;
   text-decoration: none;
-  border: 1px solid #7a8475;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: background 0.5s ease;
+  background: rgba(255, 255, 255, 0.51);
+  box-shadow: 0 1.5px 1.5px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 
   :hover {
-    border-color: #0070f3;
+    // fixme
+    background-color: #e0ddd7;
   }
 `;
 
