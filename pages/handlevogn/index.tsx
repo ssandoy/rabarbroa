@@ -113,7 +113,7 @@ const ShoppingCart = () => {
                 </LeftDataCell>
               </TableRow>
               <TableRow>
-                <LeftDataCell style={{ paddingLeft: 8 }}>Totalsum</LeftDataCell>
+                <LeftDataCell style={{ paddingLeft: 8 }}>Totalt</LeftDataCell>
                 <LeftDataCell />
                 <LeftDataCell />
                 <LeftDataCell style={{ textAlign: "right" }}>
