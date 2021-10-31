@@ -83,7 +83,7 @@ const ShoppingCart = () => {
                   </CenterDataCell>
                   <CenterDataCell>
                     <a href={formatPictureRoute(item.title.replace(" ", "-"))}>
-                      <img src={item.href} alt={item.title} width={100} />
+                      <img src={item.href} alt={item.title} width={95} />
                     </a>
                   </CenterDataCell>
                   <LeftDataCell style={{ color: "#5D6956" }}>

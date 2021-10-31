@@ -33,10 +33,8 @@ export function getCroppedImage(
   // As a blob
   return new Promise((resolve, reject) => {
     try {
-      console.log(canvas);
       canvas.toBlob(
         (blob) => {
-          console.log(blob);
           if (blob) {
             // @ts-ignore
             blob.name = fileName; // eslint-disable-line no-param-reassign

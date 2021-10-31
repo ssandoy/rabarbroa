@@ -42,7 +42,6 @@ const Id: React.FC<Props> = ({ image }) => {
   const { items, setItems } = useShoppingCartContext();
 
   const imageInShoppingCart = imageListContainsImage(items)(image);
-  console.log(imageInShoppingCart);
   return (
     <PageWrapper>
       <Head>
@@ -63,7 +62,6 @@ const Id: React.FC<Props> = ({ image }) => {
               <Button
                 onClick={() => {
                   const newItems = removeImageFromImages(items)(image);
-                  console.log(newItems);
                   setItems(newItems);
                 }}
               >
@@ -90,7 +88,6 @@ export async function getStaticPaths() {
     .collection(INDICES.PICTURES_INDEX)
     .get();
   const images = snapshot.docs.map((doc) => doc.data()) as ImageType[];
-  console.log(images);
   return {
     paths: images.map((image) => ({
       params: { id: image.title.replace(" ", "-") },

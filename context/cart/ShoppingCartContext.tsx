@@ -24,7 +24,6 @@ const ShoppingCardProvider = (props) => {
   useEffect(() => {
     const localStorageCart = localStorage.getItem(SHOPPING_CART_KEY);
     if (localStorageCart) {
-      console.log("localStorageCart");
       setItems(JSON.parse(localStorageCart));
     }
   }, []);
