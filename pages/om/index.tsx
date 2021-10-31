@@ -22,7 +22,7 @@ const Container = styled.div`
   grid-template-columns: 1fr;
   width: 524px;
   @media (${device.FOR_PHONE_ONLY}) {
-    width: 80vw;
+    width: 90vw;
   }
 `;
 
