@@ -53,7 +53,6 @@ export const Heading1 = styled.h1`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   margin: 24px 0;
 `;
@@ -67,7 +66,9 @@ export const Input = styled.input`
 `;
 
 export const Label = styled.label`
-  margin-bottom: 8px;
+  padding-left: 2px;
+  margin-top: 14px;
+  margin-bottom: 4px;
 `;
 
 // todo buttons etc here

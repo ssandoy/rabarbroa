@@ -4,6 +4,7 @@ import ReactCrop, { Crop } from "react-image-crop";
 import firebase from "../../firebase/init";
 import { getCroppedImage } from "./utils/img";
 import styled from "@emotion/styled";
+import { Label } from "../../styles/global";
 
 type Props = {
   firebaseStorageRef: string;
@@ -14,6 +15,7 @@ type Props = {
 };
 
 const FileInputContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -80,21 +82,20 @@ export const CroppedImageUploader: React.FC<Props> = ({
 
   return (
     <FileInputContainer>
-      <label htmlFor="file-upload">
+      <Label style={{ fontSize: "0.9em" }} htmlFor="file-upload">
         <p>
           <span role="img" aria-label="folder-icon">
             📁{" "}
           </span>
           Velg bilde
         </p>
-      </label>
+      </Label>
       {fileLocation && (
-        <div className="image-uploader__image-preview-container">
+        <div style={{ width: "inherit" }}>
           <ReactCrop
             onImageLoaded={(image) => {
               setImageElement(image);
             }}
-            className="image-uploader__image-preview"
             src={fileLocation}
             crop={crop}
             onChange={(newCrop) => {

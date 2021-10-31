@@ -5,29 +5,15 @@ import { Image, INDICES } from "../../firebase/types";
 import styled from "@emotion/styled";
 import firebase from "../../firebase/init";
 import { nanoid } from "nanoid";
+import {
+  Form,
+  Heading1,
+  Input,
+  Label,
+  SubmitButton,
+} from "../../styles/global";
 
 type FormData = Image;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 24px 0;
-`;
-
-const Input = styled.input`
-  width: 300px;
-  height: 20px;
-  border-radius: 24px;
-  padding-left: 14px;
-  border: 1px solid grey;
-  margin-bottom: 16px;
-`;
-
-const Label = styled.label`
-  margin-bottom: 8px;
-`;
 
 const ErrorSpan = styled.span`
   color: #e63d3d;
@@ -50,6 +36,7 @@ const ImageUploadPage = () => {
 
   const [uploadedImageRef, setUploadedImageRef] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(false);
+  const [successfullyUploaded, setSuccessfullyUploaded] = useState(false);
 
   const onSubmit = (formData: Image) => {
     if (uploadedImageRef === null) {
@@ -62,7 +49,7 @@ const ImageUploadPage = () => {
         .doc(nanoid())
         .set({ ...formData, href: uploadedImageRef, sold: false })
         .then(() => {
-          console.log("SUCCESS");
+          setSuccessfullyUploaded(true);
         });
     }
     // todo upload
@@ -70,8 +57,8 @@ const ImageUploadPage = () => {
   // todo page title
   return (
     <Container>
-      <h1>Legg til ny kunst!</h1>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Heading1>Legg til ny kunst!</Heading1>
+      <Form onSubmit={handleSubmit(onSubmit)} style={{ width: 320 }}>
         <Label>Tittel</Label>
         <Input {...register("title", { required: true })} />
         {errors.title && <ErrorSpan>Du må skrive inn tittel</ErrorSpan>}
@@ -94,7 +81,8 @@ const ImageUploadPage = () => {
         {imageUploadError && (
           <ErrorSpan>Du må laste opp bildet før du sender inn!</ErrorSpan>
         )}
-        <button type="submit">Legg til</button>
+        <SubmitButton type="submit">Legg til</SubmitButton>
+        {successfullyUploaded && <p>Flott! Bildet ble lagret.</p>}
       </Form>
     </Container>
   );
