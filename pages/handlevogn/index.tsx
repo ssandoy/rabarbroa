@@ -1,5 +1,8 @@
 import PageWrapper from "../../components/page-wrapper/page-wrapper";
-import { useShoppingCartContext } from "../../context/cart/ShoppingCartContext";
+import {
+  ShippingType,
+  useShoppingCartContext,
+} from "../../context/cart/ShoppingCartContext";
 import styled from "@emotion/styled";
 import {
   calculateTotalPrice,
@@ -53,6 +56,11 @@ const RadioButtonGroup = styled.fieldset`
   border: none;
 `;
 
+const RadioContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const RadioLabel = styled.label`
   font-size: 0.7em;
 `;
@@ -63,9 +71,22 @@ const TableRow = styled.tr`
 // fixme try to enable css-prop here instead..
 // todo form
 
+const calculateShippingPrice = (shippingType: ShippingType) => {
+  switch (shippingType) {
+    case "HENTE":
+      return 0;
+    case "SPORING":
+      return 189;
+    case "USPORING":
+      return 99;
+  }
+};
+
 const ShoppingCart = () => {
   const { items, setItems, shippingType, setShippingType } =
     useShoppingCartContext();
+
+  const shippingPrice = calculateShippingPrice(shippingType);
 
   const {
     register,
@@ -75,6 +96,7 @@ const ShoppingCart = () => {
 
   const totalPrice = calculateTotalPrice(items);
   // todo radiobuttons for frakt
+
   // todo different width for image based on screensize
   return (
     <PageWrapper>
@@ -129,44 +151,47 @@ const ShoppingCart = () => {
                 <LeftDataCell />
                 <LeftDataCell>
                   <RadioButtonGroup id="shipping">
-                    <div style={{ display: "flex" }}>
-                      <input
-                        type="radio"
-                        value="SPORING"
-                        name="shipping"
-                        id="usporing"
-                        onClick={() => setShippingType("USPORING")}
-                      />
-                      <RadioLabel htmlFor="usporing">
-                        Posten u/ sporing
-                      </RadioLabel>
-                    </div>
-                    <div>
-                      <input
-                        type="radio"
-                        id="sporing"
-                        value="SPORING"
-                        name="shipping"
-                        onClick={() => setShippingType("SPORING")}
-                      />
-                      <RadioLabel htmlFor="sporing">
-                        Posten m/ sporing
-                      </RadioLabel>
-                    </div>
-                    <div>
+                    <RadioContainer>
                       <input
                         type="radio"
                         id="hente"
                         value="HENTE"
                         name="shipping"
+                        checked={shippingType === "HENTE"}
                         onClick={() => setShippingType("HENTE")}
                       />
                       <RadioLabel htmlFor="hente">Hente på toft</RadioLabel>
-                    </div>
+                    </RadioContainer>
+                    <RadioContainer>
+                      <input
+                        type="radio"
+                        value="SPORING"
+                        name="shipping"
+                        id="usporing"
+                        checked={shippingType === "USPORING"}
+                        onClick={() => setShippingType("USPORING")}
+                      />
+                      <RadioLabel htmlFor="usporing">
+                        Posten u/ sporing
+                      </RadioLabel>
+                    </RadioContainer>
+                    <RadioContainer>
+                      <input
+                        type="radio"
+                        id="sporing"
+                        value="SPORING"
+                        name="shipping"
+                        checked={shippingType === "SPORING"}
+                        onClick={() => setShippingType("SPORING")}
+                      />
+                      <RadioLabel htmlFor="sporing">
+                        Posten m/ sporing
+                      </RadioLabel>
+                    </RadioContainer>
                   </RadioButtonGroup>
                 </LeftDataCell>
                 <LeftDataCell style={{ textAlign: "right" }}>
-                  {formatPrice(189)}
+                  {formatPrice(shippingPrice)}
                 </LeftDataCell>
               </TableRow>
               <TableRow>
@@ -174,7 +199,7 @@ const ShoppingCart = () => {
                 <LeftDataCell />
                 <LeftDataCell />
                 <LeftDataCell style={{ textAlign: "right" }}>
-                  {formatPrice(totalPrice + 189)}
+                  {formatPrice(totalPrice + shippingPrice)}
                 </LeftDataCell>
               </TableRow>
             </tbody>
