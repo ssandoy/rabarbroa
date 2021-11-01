@@ -29,6 +29,7 @@ const Form = styled.form`
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 24px;
 `;
 
 const TableHeader = styled.th`
@@ -50,6 +51,11 @@ const CenterDataCell = styled(DataCell)`
   cursor: pointer;
 `;
 
+const RightDataCell = styled(DataCell)`
+  text-align: right;
+  padding-right: 8px;
+`;
+
 const RadioButtonGroup = styled.fieldset`
   display: flex;
   flex-direction: column;
@@ -62,15 +68,14 @@ const RadioContainer = styled.div`
 `;
 
 const RadioLabel = styled.label`
-  font-size: 0.7em;
+  font-size: 0.9em;
+  margin-left: 4px;
 `;
 
 const TableRow = styled.tr`
   border-bottom: 1px solid black;
 `;
 // fixme try to enable css-prop here instead..
-// todo form
-
 const calculateShippingPrice = (shippingType: ShippingType) => {
   switch (shippingType) {
     case "HENTE":
@@ -95,7 +100,6 @@ const ShoppingCart = () => {
   } = useForm<FormData>();
 
   const totalPrice = calculateTotalPrice(items);
-  // todo radiobuttons for frakt
 
   // todo different width for image based on screensize
   return (
@@ -109,7 +113,9 @@ const ShoppingCart = () => {
                 <TableHeader>&nbsp;</TableHeader>
                 <TableHeader style={{ textAlign: "center" }}>Bilde</TableHeader>
                 <TableHeader>Tittel</TableHeader>
-                <TableHeader style={{ textAlign: "center" }}>Pris</TableHeader>
+                <TableHeader style={{ textAlign: "right", paddingRight: 8 }}>
+                  Pris
+                </TableHeader>
               </tr>
             </thead>
             <tbody>
@@ -131,20 +137,20 @@ const ShoppingCart = () => {
                   <LeftDataCell style={{ color: "#5D6956" }}>
                     {item.title}
                   </LeftDataCell>
-                  <LeftDataCell
-                    style={{ textAlign: "right", color: "#5D6956" }}
+                  <RightDataCell
+                    style={{
+                      color: "#5D6956",
+                    }}
                   >
                     {formatPrice(item.price)}
-                  </LeftDataCell>
+                  </RightDataCell>
                 </TableRow>
               ))}
               <TableRow>
                 <LeftDataCell style={{ paddingLeft: 8 }}>Sum</LeftDataCell>
                 <LeftDataCell />
                 <LeftDataCell />
-                <LeftDataCell style={{ textAlign: "right" }}>
-                  {formatPrice(totalPrice)}
-                </LeftDataCell>
+                <RightDataCell>{formatPrice(totalPrice)}</RightDataCell>
               </TableRow>
               <TableRow>
                 <LeftDataCell style={{ paddingLeft: 8 }}>Frakt</LeftDataCell>
@@ -160,7 +166,7 @@ const ShoppingCart = () => {
                         checked={shippingType === "HENTE"}
                         onClick={() => setShippingType("HENTE")}
                       />
-                      <RadioLabel htmlFor="hente">Hente på toft</RadioLabel>
+                      <RadioLabel htmlFor="hente">Hente på Toft</RadioLabel>
                     </RadioContainer>
                     <RadioContainer>
                       <input
@@ -190,23 +196,19 @@ const ShoppingCart = () => {
                     </RadioContainer>
                   </RadioButtonGroup>
                 </LeftDataCell>
-                <LeftDataCell style={{ textAlign: "right" }}>
-                  {formatPrice(shippingPrice)}
-                </LeftDataCell>
+                <RightDataCell>{formatPrice(shippingPrice)}</RightDataCell>
               </TableRow>
               <TableRow>
                 <LeftDataCell style={{ paddingLeft: 8 }}>Totalt</LeftDataCell>
                 <LeftDataCell />
                 <LeftDataCell />
-                <LeftDataCell style={{ textAlign: "right" }}>
+                <RightDataCell>
                   {formatPrice(totalPrice + shippingPrice)}
-                </LeftDataCell>
+                </RightDataCell>
               </TableRow>
             </tbody>
           </Table>
-          <SubmitButton style={{ marginTop: 24 }} type="submit">
-            Fortsett til betaling
-          </SubmitButton>
+          <SubmitButton onClick={() => {}}>Gå til kassen</SubmitButton>
         </Form>
       ) : (
         <Form>

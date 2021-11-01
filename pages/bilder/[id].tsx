@@ -33,11 +33,17 @@ const Image = styled.img`
 
 const InfoContainer = styled.div``;
 
+const Section = styled.section`
+  @media (${device.FOR_TABLET_PORTRAIT_UP}) {
+    width: 85vw;
+  }
+`;
+
 type Props = {
   image: ImageType;
 };
 
-// todo disable button if already in
+// todo modal here which says success and allows you to go to handlekurv
 const Id: React.FC<Props> = ({ image }) => {
   const { items, setItems } = useShoppingCartContext();
 
@@ -53,7 +59,7 @@ const Id: React.FC<Props> = ({ image }) => {
         </Link>
       </h2>
       {/* Add this <section> tag below the existing <section> tag */}
-      <section>
+      <Section>
         <ImageContainer>
           <Image src={image.href} alt={image.title} />
           <InfoContainer>
@@ -78,7 +84,7 @@ const Id: React.FC<Props> = ({ image }) => {
             )}
           </InfoContainer>
         </ImageContainer>
-      </section>
+      </Section>
     </PageWrapper>
   );
 };
