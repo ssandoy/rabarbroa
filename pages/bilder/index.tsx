@@ -8,7 +8,6 @@ import styled from "@emotion/styled";
 import { formatPictureRoute } from "../../routes/routes";
 import { device } from "../../styles/mixins";
 import firebase from "../../firebase/init";
-import { useShoppingCartContext } from "../../context/cart/ShoppingCartContext";
 import { Heading1 } from "../../styles/global";
 
 const MainContent = styled.main`
@@ -31,21 +30,56 @@ const PicturesGrid = styled.ul`
   }
 `;
 
+const TextContainer = styled.div`
+  @media (hover) {
+    transform: translateY(90%);
+    transition: transform 0.5s ease;
+  }
+`;
+
+const CardTitle = styled.p`
+  position: relative;
+  width: max-content;
+  max-width: 100%;
+
+  ::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    left: 0;
+    bottom: -4px;
+    background-color: deepskyblue;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+  }
+`;
+
 // todo Link from Next?
 const ListItem = styled.li`
+  overflow: hidden;
   padding: 1em;
   margin-bottom: 2em;
   break-inside: avoid;
   text-align: left;
   text-decoration: none;
-  transition: background 0.5s ease;
   background: rgba(255, 255, 255, 0.51);
   box-shadow: 0 1.5px 1.5px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 
-  :hover {
+  transition: transform 0.5s ease;
+  :hover,
+  :focus-within {
     // fixme
-    background-color: #e0ddd7;
+    transform: scale(1.05);
+    ${CardTitle}::after {
+      transform: scaleX(1);
+    }
+
+    ${TextContainer} {
+      transform: translateY(0);
+    }
   }
 `;
 
@@ -76,8 +110,10 @@ const Pictures: React.FC<Props> = ({ images }) => {
                   href={formatPictureRoute(image.title.replace(" ", "-"))}
                 >
                   <img src={image.href} alt={image.title} width="100%" />
-                  <p>{image.title}</p>
-                  <p>{formatPrice(image.price)}</p>
+                  <TextContainer>
+                    <CardTitle>{image.title}</CardTitle>
+                    <p>{formatPrice(image.price)}</p>
+                  </TextContainer>
                 </CardLink>
               </Link>
             </ListItem>
