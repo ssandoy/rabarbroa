@@ -22,8 +22,8 @@ const MainContent = styled.main`
 const PicturesGrid = styled.ul`
   column-count: 3;
   list-style: none outside;
-  column-gap: 2em;
-  row-gap: 2em;
+  column-gap: 3em;
+  row-gap: 3em;
   padding-inline-start: 0;
   @media (${device.FOR_PHONE_ONLY}) {
     column-count: 2;
@@ -56,23 +56,22 @@ const CardTitle = styled.p`
   }
 `;
 
-// todo Link from Next?
 const ListItem = styled.li`
   overflow: hidden;
-  padding: 1em;
-  margin-bottom: 2em;
+  padding: 1.5em 1em 1em;
+  margin-bottom: 3em;
   break-inside: avoid;
   text-align: left;
   text-decoration: none;
   background: rgba(255, 255, 255, 0.51);
-  box-shadow: 0 1.5px 1.5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease-in-out, transform-origin 0.5s ease-in-out;
   :hover,
   :focus-within {
-    // fixme
     transform: scale(1.05);
+    transform-origin: top center;
     ${CardTitle}::after {
       transform: scaleX(1);
     }
@@ -87,6 +86,8 @@ const CardLink = styled.a`
   color: inherit;
   text-decoration: none;
 `;
+
+const Image = styled.img``;
 
 // this adds space between every third number
 export const formatPrice = (price: number) => {
@@ -109,7 +110,7 @@ const Pictures: React.FC<Props> = ({ images }) => {
                 <CardLink
                   href={formatPictureRoute(image.title.replace(" ", "-"))}
                 >
-                  <img src={image.href} alt={image.title} width="100%" />
+                  <Image src={image.href} alt={image.title} width="100%" />
                   <TextContainer>
                     <CardTitle>{image.title}</CardTitle>
                     <p>{formatPrice(image.price)}</p>
