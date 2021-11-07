@@ -13,7 +13,7 @@ export const globalStyles = (
         margin: 0;
         background: ${globalBackgroundColor};
         color: ${globalTextColor};
-        min-height: 100%;
+        min-height: 100vh;
         font-family: Antonio, sans-serif;
         font-size: 16px;
       }

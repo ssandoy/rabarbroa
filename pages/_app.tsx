@@ -1,11 +1,18 @@
 import { globalStyles } from "../styles/global";
 import Header from "../components/header/header";
-import Footer from "../components/footer/footer";
+import Footer from "../components/footer/Footer";
 import { AdminProvider } from "../context/admin/AdminContext";
 import Head from "next/head";
 import React from "react";
 import "react-image-crop/dist/ReactCrop.css";
 import { ShoppingCardProvider } from "../context/cart/ShoppingCartContext";
+import styled from "@emotion/styled";
+
+const ParentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -24,9 +31,11 @@ const App = ({ Component, pageProps }) => {
           />
         </Head>
         {globalStyles}
-        <Header />
-        <Component {...pageProps} />
-        <Footer />
+        <ParentWrapper>
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+        </ParentWrapper>
       </ShoppingCardProvider>
     </AdminProvider>
   );

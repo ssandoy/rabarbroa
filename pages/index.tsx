@@ -14,7 +14,7 @@ type Props = {
   }[];
 };
 
-const MainContent = styled.main`
+const MainContent = styled.div`
   padding: 0 5rem;
   flex: 1;
   display: flex;
