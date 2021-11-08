@@ -30,12 +30,7 @@ const PicturesGrid = styled.ul`
   }
 `;
 
-const TextContainer = styled.div`
-  @media (hover) {
-    transform: translateY(90%);
-    transition: transform 0.5s ease;
-  }
-`;
+const TextContainer = styled.div``;
 
 const CardTitle = styled.p`
   position: relative;
@@ -67,17 +62,13 @@ const ListItem = styled.li`
   box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 
-  transition: transform 0.5s ease-in-out, transform-origin 0.5s ease-in-out;
+  transition: transform 0.3s ease-in;
+  transform-origin: top center;
   :hover,
   :focus-within {
     transform: scale(1.05);
-    transform-origin: top center;
     ${CardTitle}::after {
       transform: scaleX(1);
-    }
-
-    ${TextContainer} {
-      transform: translateY(0);
     }
   }
 `;
