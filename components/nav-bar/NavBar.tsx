@@ -5,7 +5,7 @@ import {
   ABOUT_ROUTE,
   CONTACT_ROUTE,
   INTRO_ROUTE,
-  PICTURES_ROUTE,
+  PRODUCTS_ROUTE,
 } from "../../routes/routes";
 
 const Container = styled.div`
@@ -18,7 +18,7 @@ const NavBar = () => {
   return (
     <Container>
       <ActiveLink href={INTRO_ROUTE}>Forside</ActiveLink>
-      <ActiveLink href={PICTURES_ROUTE}>Bilder</ActiveLink>
+      <ActiveLink href={PRODUCTS_ROUTE}>Produkter</ActiveLink>
       <ActiveLink href={CONTACT_ROUTE}>Kontakt</ActiveLink>
       <ActiveLink href={ABOUT_ROUTE}>Om Rabarbro</ActiveLink>
     </Container>

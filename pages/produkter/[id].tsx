@@ -5,7 +5,7 @@ import { Image as ImageType, INDICES } from "../../firebase/types";
 import Head from "next/head";
 import React from "react";
 import styled from "@emotion/styled";
-import { PICTURES_ROUTE } from "../../routes/routes";
+import { PRODUCTS_ROUTE } from "../../routes/routes";
 import { device } from "../../styles/mixins";
 import firebase from "../../firebase/init";
 import { Button, Heading1 } from "../../styles/global";
@@ -54,7 +54,7 @@ const Id: React.FC<Props> = ({ image }) => {
         <title>{image.title}</title>
       </Head>
       <h2>
-        <Link href={PICTURES_ROUTE}>
+        <Link href={PRODUCTS_ROUTE}>
           <a style={{ color: "black" }}>Tilbake</a>
         </Link>
       </h2>

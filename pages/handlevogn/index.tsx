@@ -8,7 +8,7 @@ import {
   calculateTotalPrice,
   removeImageFromImages,
 } from "../../firebase/domain";
-import { formatPrice } from "../bilder";
+import { formatPrice } from "../produkter";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { device } from "../../styles/mixins";

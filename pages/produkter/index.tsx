@@ -93,7 +93,6 @@ const Pictures: React.FC<Props> = ({ images }) => {
   return (
     <PageWrapper>
       <MainContent>
-        <Heading1>Bilder</Heading1>
         <PicturesGrid>
           {images.map((image) => (
             <ListItem key={image.title}>
