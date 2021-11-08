@@ -1,7 +1,8 @@
-const Facebook = () => {
+const InfoCircle = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
+      className="icon icon-tabler icon-tabler-info-circle"
       width="32"
       height="32"
       viewBox="0 0 24 24"
@@ -12,9 +13,11 @@ const Facebook = () => {
       strokeLinejoin="round"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+      <circle cx="12" cy="12" r="9" />
+      <line x1="12" y1="8" x2="12.01" y2="8" />
+      <polyline points="11 12 12 12 12 16 13 16" />
     </svg>
   );
 };
 
-export default Facebook;
+export default InfoCircle;
