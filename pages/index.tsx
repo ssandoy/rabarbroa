@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import EmblaCarousel from "../components/carousel/carousel";
 import React from "react";
-import { Heading1 } from "../styles/global";
+import { device } from "../styles/mixins";
 
 type Props = {
   carouselImages: {
@@ -14,21 +14,73 @@ type Props = {
   }[];
 };
 
-const MainContent = styled.div`
-  padding: 0 5rem;
+const Container = styled.div`
+  padding: 0 3rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
+const IntroContainer = styled.div`
+  position: relative;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 24px;
+  width: 60vw;
+  max-width: 600px;
+  margin-top: 24px;
+`;
+
+const IntroTitle = styled.h2`
+  color: black;
+  font-weight: lighter;
+  margin: 0;
+`;
+
+const IntroText = styled.p`
+  color: black;
+  text-align: center;
+`;
+
+const BottomBox = styled.div`
+  position: absolute;
+  height: 4px;
+  width: 30%;
+  bottom: 0;
+  left: 0;
+
+  background: #5d6956;
+`;
+
+const TopBox = styled.div`
+  position: absolute;
+  height: 24px;
+  width: 20%;
+  @media (${device.FOR_PHONE_ONLY}) {
+    width: 40%;
+  }
+  top: -8px;
+  right: -16px;
+  background: #5d6956;
+`;
+
 const Home: React.FC<Props> = ({ carouselImages }) => {
   return (
     <PageWrapper>
-      <MainContent>
-        <Heading1>Rabarbro</Heading1>
-        <EmblaCarousel images={carouselImages} />
-      </MainContent>
+      <Container>
+        <div style={{ marginTop: 24 }}>
+          <EmblaCarousel images={carouselImages} />
+        </div>
+        <IntroContainer>
+          <TopBox />
+          <IntroTitle>Kaos. Farger. Liv</IntroTitle>
+          <IntroText>
+            Norske originaler, tegnet og malt på Sør-Helgeland.
+          </IntroText>
+          <BottomBox />
+        </IntroContainer>
+      </Container>
     </PageWrapper>
   );
 };

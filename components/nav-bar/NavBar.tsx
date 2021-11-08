@@ -19,8 +19,8 @@ const NavBar = () => {
     <Container>
       <ActiveLink href={INTRO_ROUTE}>Forside</ActiveLink>
       <ActiveLink href={PRODUCTS_ROUTE}>Produkter</ActiveLink>
-      <ActiveLink href={CONTACT_ROUTE}>Kontakt</ActiveLink>
       <ActiveLink href={ABOUT_ROUTE}>Om Rabarbro</ActiveLink>
+      <ActiveLink href={CONTACT_ROUTE}>Kontakt</ActiveLink>
     </Container>
   );
 };
