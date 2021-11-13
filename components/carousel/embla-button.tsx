@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
 
-// todo props
 type ButtonProps = {
   isPrevious: boolean;
 };

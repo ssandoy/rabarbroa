@@ -5,8 +5,6 @@ import ImageUploadPage from "./ImageUploadPage";
 const Admin = () => {
   const { isLoggedIn, setIsLoggedIn } = useAdminContext();
 
-  // todo fix styling etf
-
   return isLoggedIn ? (
     <ImageUploadPage />
   ) : (

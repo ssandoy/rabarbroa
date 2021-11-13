@@ -6,7 +6,7 @@ import {
   Heading1,
   Input,
   Label,
-  SubmitButton,
+  Button,
 } from "../../styles/global";
 import { useForm } from "react-hook-form";
 import styled from "@emotion/styled";
@@ -62,14 +62,14 @@ const Contact: React.FC = () => {
               }}
               {...register("feedback", { required: true })}
             />
-            <SubmitButton
+            <Button
               style={{
                 width: "100%",
                 marginTop: "16px",
               }}
             >
               Send melding
-            </SubmitButton>
+            </Button>
           </Form>
         </>
       ) : (

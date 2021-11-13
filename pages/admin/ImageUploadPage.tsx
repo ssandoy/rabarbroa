@@ -10,15 +10,11 @@ import {
   Heading1,
   Input,
   Label,
-  SubmitButton,
+  Button,
+  ErrorSpan,
 } from "../../styles/global";
 
 type FormData = Image;
-
-const ErrorSpan = styled.span`
-  color: #e63d3d;
-  margin-bottom: 16px;
-`;
 
 const Container = styled.div`
   display: flex;
@@ -52,9 +48,7 @@ const ImageUploadPage = () => {
           setSuccessfullyUploaded(true);
         });
     }
-    // todo upload
   };
-  // todo page title
   return (
     <Container>
       <Heading1>Legg til ny kunst!</Heading1>
@@ -81,7 +75,7 @@ const ImageUploadPage = () => {
         {imageUploadError && (
           <ErrorSpan>Du må laste opp bildet før du sender inn!</ErrorSpan>
         )}
-        <SubmitButton type="submit">Legg til</SubmitButton>
+        <Button type="submit">Legg til</Button>
         {successfullyUploaded && <p>Flott! Bildet ble lagret.</p>}
       </Form>
     </Container>

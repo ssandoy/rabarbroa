@@ -7,13 +7,13 @@ import React, {
 } from "react";
 import { Image } from "../../firebase/types";
 
-export type ShippingType = "SPORING" | "USPORING" | "HENTE";
+export type FormStage = "CART" | "CONTACTINFO" | "PAYMENT";
 
 type ShoppingCartState = {
   items: Image[];
   setItems: Dispatch<SetStateAction<Image[]>>;
-  shippingType: ShippingType;
-  setShippingType: Dispatch<SetStateAction<ShippingType>>;
+  formStage: FormStage; // todo rename
+  setFormStage: Dispatch<SetStateAction<FormStage>>;
 };
 
 const ShoppingCartContext = React.createContext<ShoppingCartState | undefined>(
@@ -21,20 +21,15 @@ const ShoppingCartContext = React.createContext<ShoppingCartState | undefined>(
 );
 
 export const SHOPPING_CART_KEY = "shopping-cart";
-export const SHIPPING_KEY = "shipping";
 
 const ShoppingCardProvider = (props) => {
   const [items, setItems] = useState([]);
-  const [shippingType, setShippingType] = useState<ShippingType>("SPORING");
+  const [formStage, setFormStage] = useState<FormStage>("CART");
 
   useEffect(() => {
     const localStorageCart = localStorage.getItem(SHOPPING_CART_KEY);
     if (localStorageCart) {
       setItems(JSON.parse(localStorageCart));
-    }
-    const localStorageShipping = localStorage.getItem(SHIPPING_KEY);
-    if (localStorageShipping) {
-      setShippingType(JSON.parse(localStorageShipping));
     }
   }, []);
 
@@ -42,18 +37,14 @@ const ShoppingCardProvider = (props) => {
     window.localStorage.setItem(SHOPPING_CART_KEY, JSON.stringify(items));
   }, [items]);
 
-  useEffect(() => {
-    window.localStorage.setItem(SHIPPING_KEY, JSON.stringify(shippingType));
-  }, [shippingType]);
-
   const value: ShoppingCartState = useMemo(
     () => ({
       items,
       setItems,
-      shippingType,
-      setShippingType,
+      formStage,
+      setFormStage,
     }),
-    [items, shippingType]
+    [items, formStage]
   );
 
   return <ShoppingCartContext.Provider value={value} {...props} />;

@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import NavBar from "../nav-bar/NavBar";
 import ShoppingCart from "./ShoppingCart";
 import Logo from "./Logo";
 import { useRouter } from "next/router";
 import { SHOPPING_CART_ROUTE } from "../../routes/routes";
-import { isNative } from "../../utils/window";
 import { useShoppingCartContext } from "../../context/cart/ShoppingCartContext";
 
-// todo style mobile
 const HeaderContainer = styled.header`
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   padding-bottom: 24px;
   border-bottom: 1px solid #eaeaea;
   align-items: center;
@@ -40,7 +38,6 @@ const Header = () => {
   const router = useRouter();
   const { items } = useShoppingCartContext();
 
-  // todo 340 width for desktop
   return (
     <HeaderContainer>
       <LogoContainer>

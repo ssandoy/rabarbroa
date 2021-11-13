@@ -1,20 +1,32 @@
 import PageWrapper from "../../components/page-wrapper/page-wrapper";
 import {
-  ShippingType,
+  FormStage,
   useShoppingCartContext,
 } from "../../context/cart/ShoppingCartContext";
 import styled from "@emotion/styled";
-import {
-  calculateTotalPrice,
-  removeImageFromImages,
-} from "../../firebase/domain";
-import { formatPrice } from "../produkter";
-import React from "react";
-import { useForm } from "react-hook-form";
+import Link from "next/link";
+import React, { useState } from "react";
+import { useForm, FormProvider } from "react-hook-form";
+import { Heading1 } from "../../styles/global";
+import HandlevognTable from "../../components/checkout/handlevogn/HandlevognTable";
+import { PRODUCTS_ROUTE } from "../../routes/routes";
+import ContactInfo from "../../components/checkout/contact/ContactInfo";
 import { device } from "../../styles/mixins";
-import { formatPictureRoute } from "../../routes/routes";
-import { Heading1, SubmitButton } from "../../styles/global";
-import { CrossIcon } from "../../components/cross/CrossIcon";
+import CheckoutBasket, {
+  CheckoutStatus,
+} from "../../components/checkout/CheckoutBasket";
+import { CheckoutPayment } from "../../components/checkout/payment/CheckoutPayment";
+import { FormData } from "../../components/checkout/domain";
+
+const SmallParagrah = styled.p`
+  font-size: 0.8em;
+`;
+
+const EmptyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const Form = styled.form`
   width: 800px;
@@ -26,196 +38,75 @@ const Form = styled.form`
   }
 `;
 
-const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 24px;
-`;
-
-const TableHeader = styled.th`
-  text-align: left;
-  font-weight: lighter;
-`;
-
-const DataCell = styled.td`
-  padding: 8px 0;
-  font-size: 0.8em;
-`;
-
-const LeftDataCell = styled(DataCell)`
-  text-align: left;
-`;
-
-const CenterDataCell = styled(DataCell)`
-  text-align: center;
-  cursor: pointer;
-`;
-
-const RightDataCell = styled(DataCell)`
-  text-align: right;
-  padding-right: 8px;
-`;
-
-const RadioButtonGroup = styled.fieldset`
-  display: flex;
-  flex-direction: column;
-  border: none;
-`;
-
-const RadioContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const RadioLabel = styled.label`
-  font-size: 0.9em;
-  margin-left: 4px;
-`;
-
-const TableRow = styled.tr`
-  border-bottom: 1px solid black;
-`;
-// fixme try to enable css-prop here instead..
-const calculateShippingPrice = (shippingType: ShippingType) => {
-  switch (shippingType) {
-    case "HENTE":
-      return 0;
-    case "SPORING":
-      return 189;
-    case "USPORING":
-      return 99;
-  }
-};
+const calculateCheckoutStatus =
+  (formStage: FormStage) =>
+  (activeStage: FormStage): CheckoutStatus => {
+    if (activeStage === formStage) {
+      return "ACTIVE";
+    }
+    switch (formStage) {
+      case "CART":
+        return "COMPLETED";
+      case "CONTACTINFO":
+        if (activeStage === "CART") {
+          return "TODO";
+        }
+        return "COMPLETED";
+      case "PAYMENT":
+        return "TODO";
+    }
+  };
 
 const ShoppingCart = () => {
-  const { items, setItems, shippingType, setShippingType } =
-    useShoppingCartContext();
+  const { items, formStage, setFormStage } = useShoppingCartContext();
+  const methods = useForm<FormData>();
+  // todo issue with formState not persisted when going in and out
 
-  const shippingPrice = calculateShippingPrice(shippingType);
+  if (items.length === 0) {
+    return (
+      <EmptyContainer>
+        <SmallParagrah>Handlevognen er for øyeblikket tom.</SmallParagrah>
+        <SmallParagrah>
+          Utforsk bildene til salgs <Link href={PRODUCTS_ROUTE}>her</Link>
+        </SmallParagrah>
+      </EmptyContainer>
+    );
+  }
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>();
-
-  const totalPrice = calculateTotalPrice(items);
-
-  // todo different width for image based on screensize
   return (
     <PageWrapper>
       <Heading1>Handlevogn</Heading1>
-      {items.length > 0 ? (
-        <Form>
-          <Table>
-            <thead>
-              <tr>
-                <TableHeader>&nbsp;</TableHeader>
-                <TableHeader style={{ textAlign: "center" }}>Bilde</TableHeader>
-                <TableHeader>Tittel</TableHeader>
-                <TableHeader style={{ textAlign: "right", paddingRight: 8 }}>
-                  Pris
-                </TableHeader>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((item) => (
-                <TableRow key={item.title}>
-                  <CenterDataCell
-                    onClick={() => {
-                      const newItems = removeImageFromImages(items)(item);
-                      setItems(newItems);
-                    }}
-                  >
-                    <CrossIcon />
-                  </CenterDataCell>
-                  <CenterDataCell>
-                    <a href={formatPictureRoute(item.title.replace(" ", "-"))}>
-                      <img src={item.href} alt={item.title} width={95} />
-                    </a>
-                  </CenterDataCell>
-                  <LeftDataCell style={{ color: "#5D6956" }}>
-                    {item.title}
-                  </LeftDataCell>
-                  <RightDataCell
-                    style={{
-                      color: "#5D6956",
-                    }}
-                  >
-                    {formatPrice(item.price)}
-                  </RightDataCell>
-                </TableRow>
-              ))}
-              <TableRow>
-                <LeftDataCell style={{ paddingLeft: 8 }}>Sum</LeftDataCell>
-                <LeftDataCell />
-                <LeftDataCell />
-                <RightDataCell>{formatPrice(totalPrice)}</RightDataCell>
-              </TableRow>
-              <TableRow>
-                <LeftDataCell style={{ paddingLeft: 8 }}>Frakt</LeftDataCell>
-                <LeftDataCell />
-                <LeftDataCell>
-                  <RadioButtonGroup id="shipping">
-                    <RadioContainer>
-                      <input
-                        type="radio"
-                        id="hente"
-                        value="HENTE"
-                        name="shipping"
-                        checked={shippingType === "HENTE"}
-                        onClick={() => setShippingType("HENTE")}
-                      />
-                      <RadioLabel htmlFor="hente">Hente på Toft</RadioLabel>
-                    </RadioContainer>
-                    <RadioContainer>
-                      <input
-                        type="radio"
-                        value="SPORING"
-                        name="shipping"
-                        id="usporing"
-                        checked={shippingType === "USPORING"}
-                        onClick={() => setShippingType("USPORING")}
-                      />
-                      <RadioLabel htmlFor="usporing">
-                        Posten u/ sporing
-                      </RadioLabel>
-                    </RadioContainer>
-                    <RadioContainer>
-                      <input
-                        type="radio"
-                        id="sporing"
-                        value="SPORING"
-                        name="shipping"
-                        checked={shippingType === "SPORING"}
-                        onClick={() => setShippingType("SPORING")}
-                      />
-                      <RadioLabel htmlFor="sporing">
-                        Posten m/ sporing
-                      </RadioLabel>
-                    </RadioContainer>
-                  </RadioButtonGroup>
-                </LeftDataCell>
-                <RightDataCell>{formatPrice(shippingPrice)}</RightDataCell>
-              </TableRow>
-              <TableRow>
-                <LeftDataCell style={{ paddingLeft: 8 }}>Totalt</LeftDataCell>
-                <LeftDataCell />
-                <LeftDataCell />
-                <RightDataCell>
-                  {formatPrice(totalPrice + shippingPrice)}
-                </RightDataCell>
-              </TableRow>
-            </tbody>
-          </Table>
-          <SubmitButton onClick={() => {}}>Gå til kassen</SubmitButton>
+      <FormProvider {...methods}>
+        <Form
+          onSubmit={(e) => {
+            console.log("Submitting");
+            e.preventDefault();
+            //methods.handleSubmit(handleSubmit(); todo
+          }}
+        >
+          <CheckoutBasket
+            title="Handlevogn"
+            formStage="CART"
+            status={calculateCheckoutStatus("CART")(formStage)}
+          >
+            <HandlevognTable onClick={() => setFormStage("CONTACTINFO")} />
+          </CheckoutBasket>
+          <CheckoutBasket
+            formStage="CONTACTINFO"
+            title="Leveringsinformasjon"
+            status={calculateCheckoutStatus("CONTACTINFO")(formStage)}
+          >
+            <ContactInfo />
+          </CheckoutBasket>
+          <CheckoutBasket
+            formStage="PAYMENT"
+            title="Betalingsmåte"
+            status={calculateCheckoutStatus("PAYMENT")(formStage)}
+          >
+            <CheckoutPayment />
+          </CheckoutBasket>
         </Form>
-      ) : (
-        <Form>
-          <p>Handlevognen er for øyeblikket tom.</p>
-          Gå til bilder her via knapp
-        </Form>
-      )}
+      </FormProvider>
     </PageWrapper>
   );
 };

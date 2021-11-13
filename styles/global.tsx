@@ -1,5 +1,6 @@
 import { css, Global, keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
+import { device } from "./mixins";
 
 const globalBackgroundColor = "#F4F0EA";
 const globalTextColor = "black";
@@ -21,24 +22,7 @@ export const globalStyles = (
   />
 );
 
-export const basicButtonStyles = css`
-  background-color: white;
-  color: cornflowerblue;
-  border: 1px solid lightgreen;
-  border-right: none;
-  border-bottom: none;
-  transition: all 0.1s linear;
-  font-size: 1em;
-  margin: 3rem 0;
-  padding: 1rem 0.5rem;
-`;
-
-// todo
 export const Button = styled.button`
-  ${basicButtonStyles};
-`;
-
-export const SubmitButton = styled.button`
   color: white;
   height: 40px;
   border: none;
@@ -57,8 +41,15 @@ export const Form = styled.form`
   margin: 24px 0;
 `;
 
-export const Input = styled.input`
-  width: 300px;
+type InputProps = {
+  width?: number;
+};
+
+export const Input = styled.input<InputProps>`
+  width: ${({ width }) => (width ? `${width}px` : "300px")};
+  @media (${device.FOR_PHONE_ONLY}) {
+    width: 70%;
+  }
   height: 30px;
   padding-left: 14px;
   border: none;
@@ -69,6 +60,7 @@ export const Label = styled.label`
   padding-left: 2px;
   margin-top: 14px;
   margin-bottom: 4px;
+  font-size: 0.8em;
 `;
 
 export const CardContainer = styled.div`
@@ -76,6 +68,13 @@ export const CardContainer = styled.div`
   width: 350px;
   background: rgba(255, 255, 255, 0.51);
   box-shadow: 0px 1.5px 1.5px rgba(0, 0, 0, 0.25);
+`;
+
+export const ErrorSpan = styled.span`
+  font-size: 0.7em;
+  color: #e63d3d;
+  margin-top: 8px;
+  margin-bottom: 16px;
 `;
 
 // todo buttons etc here

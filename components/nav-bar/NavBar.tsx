@@ -24,6 +24,5 @@ const NavBar = () => {
     </Container>
   );
 };
-// todo load routes somehow
 
 export default NavBar;
