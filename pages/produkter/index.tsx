@@ -8,15 +8,17 @@ import styled from "@emotion/styled";
 import { formatPictureRoute } from "../../routes/routes";
 import { device } from "../../styles/mixins";
 import firebase from "../../firebase/init";
-import { Heading1 } from "../../styles/global";
 
 const MainContent = styled.main`
-  padding: 0 2rem;
+  @media (${device.FOR_TABLET_PORTRAIT_UP}) {
+    padding: 0 2rem;
+    width: 80vw;
+  }
+
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80vw;
 `;
 
 const PicturesGrid = styled.ul`
@@ -27,6 +29,8 @@ const PicturesGrid = styled.ul`
   padding-inline-start: 0;
   @media (${device.FOR_PHONE_ONLY}) {
     column-count: 2;
+    column-gap: 1em;
+    margin: 0 16px;
   }
 `;
 
