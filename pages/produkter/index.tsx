@@ -13,6 +13,7 @@ const MainContent = styled.main`
   @media (${device.FOR_TABLET_PORTRAIT_UP}) {
     padding: 0 2rem;
     width: 80vw;
+    max-width: 1200px;
   }
 
   flex: 1;

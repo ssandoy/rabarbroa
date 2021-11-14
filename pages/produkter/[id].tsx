@@ -100,7 +100,7 @@ export async function getStaticPaths() {
     paths: images.map((image) => ({
       params: { id: image.title.replace(" ", "-") },
     })),
-    fallback: false,
+    fallback: "blocking",
   };
 }
 
@@ -119,6 +119,7 @@ export const getStaticProps: GetStaticProps = async ({
     props: {
       image,
     },
+    revalidate: 60,
   };
 };
 
