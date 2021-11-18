@@ -58,25 +58,40 @@ export const CroppedImageUploader: React.FC<Props> = ({
     if (imageElement) {
       setIsUploading(true);
       const croppedImage = await getCroppedImage(imageElement, crop, fileName);
-      const imageRef = await firebase.storage().ref().child(firebaseStorageRef);
-      const uploadRef = imageRef.child(new Date().getTime() + "-" + fileName);
-      const imageUrl = await uploadRef.put(croppedImage).then(
-        (success) => {
+      const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUDNAME}/upload`;
+      const xhr = new XMLHttpRequest();
+      const fd = new FormData();
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+      // todo error-handling or use fetch.
+      xhr.onreadystatechange = (e) => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          const response = JSON.parse(xhr.responseText);
           setIsUploading(false);
           setIsUploaded(true);
-          return success.ref.getDownloadURL();
-        },
-        (error) => {
-          setIsUploading(false);
-          setIsUploaded(false);
-          setUploadError(
-            "Noe gikk galt under opplastning, vennligst prøv på nytt."
-          );
+          console.log(response.secure_url);
+          handleUpdateComplete(response.secure_url);
         }
-      );
+      };
 
-      return handleUpdateComplete ? handleUpdateComplete(imageUrl) : null;
+      fd.append(
+        "upload_preset",
+        process.env.NEXT_PUBLIC_CLOUDINARY_UNSIGNED_UPLOAD_PRESET
+      );
+      fd.append("tags", "browser_upload");
+      fd.append("file", croppedImage);
+      xhr.send(fd);
     }
+    //   (error) => {
+    //     setIsUploading(false);
+    //     setIsUploaded(false);
+    //     setUploadError(
+    //       "Noe gikk galt under opplastning, vennligst prøv på nytt."
+    //     );
+    //   }
+    // );
+
     return null;
   };
 
