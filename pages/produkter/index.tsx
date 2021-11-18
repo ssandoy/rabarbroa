@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Image as ImageType, INDICES } from "../../firebase/types";
-import Image from "next/image";
 import PageWrapper from "../../components/page-wrapper/page-wrapper";
 import numberFormat from "underscore.string/numberFormat";
 import { GetStaticProps, GetStaticPropsResult } from "next";
@@ -10,12 +9,20 @@ import { formatPictureRoute } from "../../routes/routes";
 import { device } from "../../styles/mixins";
 import firebase from "../../firebase/init";
 
-const PicturesGrid = styled.ul`
+const MainContent = styled.main`
   @media (${device.FOR_TABLET_PORTRAIT_UP}) {
     padding: 0 2rem;
     width: 80vw;
     max-width: 1200px;
   }
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const PicturesGrid = styled.ul`
   column-count: 3;
   list-style: none outside;
   column-gap: 3em;
@@ -76,7 +83,7 @@ const CardLink = styled.a`
   text-decoration: none;
 `;
 
-// const Image = styled.img``;
+const Image = styled.img``;
 
 // this adds space between every third number
 export const formatPrice = (price: number) => {
@@ -90,30 +97,25 @@ type Props = {
 const Pictures: React.FC<Props> = ({ images }) => {
   return (
     <PageWrapper>
-      <PicturesGrid>
-        {images.map((image) => (
-          <ListItem key={image.title}>
-            <Link href={formatPictureRoute(image.title.replace(" ", "-"))}>
-              <CardLink
-                href={formatPictureRoute(image.title.replace(" ", "-"))}
-              >
-                <Image
-                  src={image.href}
-                  alt={image.title}
-                  width="100%"
-                  height="100%"
-                  layout="responsive"
-                  objectFit="contain"
-                />
-                <TextContainer>
-                  <CardTitle>{image.title}</CardTitle>
-                  <p>{formatPrice(image.price)}</p>
-                </TextContainer>
-              </CardLink>
-            </Link>
-          </ListItem>
-        ))}
-      </PicturesGrid>
+      <MainContent>
+        <PicturesGrid>
+          {images.map((image) => (
+            <ListItem key={image.title}>
+              <Link href={formatPictureRoute(image.title.replace(" ", "-"))}>
+                <CardLink
+                  href={formatPictureRoute(image.title.replace(" ", "-"))}
+                >
+                  <Image src={image.href} alt={image.title} width="100%" />
+                  <TextContainer>
+                    <CardTitle>{image.title}</CardTitle>
+                    <p>{formatPrice(image.price)}</p>
+                  </TextContainer>
+                </CardLink>
+              </Link>
+            </ListItem>
+          ))}
+        </PicturesGrid>
+      </MainContent>
     </PageWrapper>
   );
 };

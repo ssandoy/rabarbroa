@@ -3,9 +3,6 @@
  */
 const nextConfig = {
   /* config options here */
-  images: {
-    domains: ["firebasestorage.googleapis.com"],
-  },
 };
 
 module.exports = nextConfig;
