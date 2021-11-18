@@ -1,5 +1,5 @@
 import CroppedImageUploader from "../../components/image-uploader";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Image, INDICES } from "../../firebase/types";
 import styled from "@emotion/styled";
@@ -28,7 +28,10 @@ const ImageUploadPage = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormData>();
+
+  const triggerKey = useRef(nanoid());
 
   const [uploadedImageRef, setUploadedImageRef] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(false);
@@ -69,6 +72,7 @@ const ImageUploadPage = () => {
         <Input {...register("description")} />
         <Label>Last opp bilde</Label>
         <CroppedImageUploader
+          key={triggerKey.current}
           handleUpdateComplete={setUploadedImageRef}
           firebaseStorageRef="testbilder"
         />
@@ -76,7 +80,22 @@ const ImageUploadPage = () => {
           <ErrorSpan>Du må laste opp bildet før du sender inn!</ErrorSpan>
         )}
         <Button type="submit">Legg til</Button>
-        {successfullyUploaded && <p>Flott! Bildet ble lagret.</p>}
+        {successfullyUploaded && (
+          <>
+            <p>Flott! Bildet ble lagret.</p>
+            <Button
+              onClick={() => {
+                reset();
+                setSuccessfullyUploaded(false);
+                setImageUploadError(null);
+                setUploadedImageRef(null);
+                triggerKey.current = nanoid();
+              }}
+            >
+              Start på nytt
+            </Button>
+          </>
+        )}
       </Form>
     </Container>
   );
