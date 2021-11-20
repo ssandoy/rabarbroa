@@ -3,20 +3,29 @@ import PageWrapper from "../../components/page-wrapper/page-wrapper";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import { Image as ImageType, INDICES } from "../../firebase/types";
 import Head from "next/head";
-import React from "react";
+import Modal from "react-modal";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { PRODUCTS_ROUTE } from "../../routes/routes";
 import { device } from "../../styles/mixins";
 import firebase from "../../firebase/init";
-import { Button, Heading1 } from "../../styles/global";
-import { formatPrice } from "./index";
+import {
+  PrimaryButton,
+  Heading1,
+  modalStyles,
+  StyledImage,
+  StyledImageDiv,
+} from "../../styles/global";
+import { formatPrice, formatSize } from "./index";
 import { useShoppingCartContext } from "../../context/cart/ShoppingCartContext";
 import {
   imageListContainsImage,
   removeImageFromImages,
 } from "../../firebase/domain";
+import { HandlevognModal } from "../../components/handlevogn-modal/HandlevognModal";
 
-const ImageContainer = styled.div`
+const Container = styled.div`
+  max-width: 600px;
   margin: 2em;
   display: grid;
   grid-template-rows: 1fr;
@@ -24,28 +33,39 @@ const ImageContainer = styled.div`
   @media (${device.FOR_PHONE_ONLY}) {
     grid-template-columns: 1fr;
   }
+  @media (${device.FOR_TABLET_PORTRAIT_UP}) {
+    min-width: 100%;
+  }
   grid-gap: 2em;
 `;
 
-const Image = styled.img`
-  width: 100%;
+const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: right;
 `;
 
-const InfoContainer = styled.div``;
+const InfoText = styled.p`
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 8px 0;
+`;
 
 const Section = styled.section`
-  @media (${device.FOR_TABLET_PORTRAIT_UP}) {
-    width: 85vw;
-  }
+  display: flex;
+  justify-content: center;
 `;
 
 type Props = {
   image: ImageType;
 };
 
-// todo modal here which says success and allows you to go to handlekurv
 const Id: React.FC<Props> = ({ image }) => {
   const { items, setItems } = useShoppingCartContext();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   const imageInShoppingCart = imageListContainsImage(items)(image);
   return (
@@ -58,33 +78,44 @@ const Id: React.FC<Props> = ({ image }) => {
           <a style={{ color: "black" }}>Tilbake</a>
         </Link>
       </h2>
-      {/* Add this <section> tag below the existing <section> tag */}
       <Section>
-        <ImageContainer>
-          <Image src={image.href} alt={image.title} />
+        <Container>
+          <StyledImageDiv>
+            <StyledImage src={image.href} alt={image.title} layout="fill" />
+          </StyledImageDiv>
           <InfoContainer>
-            <Heading1>{image.title}</Heading1>
-            <p>{formatPrice(image.price)}</p>
-            <p>{image.size}</p>
+            <Heading1 style={{ margin: 8 }}>{image.title}</Heading1>
+            <InfoText>{formatSize(image.size)}</InfoText>
+            <InfoText style={{ fontWeight: "bold" }}>
+              {formatPrice(image.price)}
+            </InfoText>
             {imageInShoppingCart ? (
-              <Button
+              <PrimaryButton
+                style={{ marginTop: "auto" }}
                 onClick={() => {
                   const newItems = removeImageFromImages(items)(image);
                   setItems(newItems);
                 }}
               >
                 Fjern fra handlevogn
-              </Button>
+              </PrimaryButton>
             ) : (
-              <Button
-                onClick={() => setItems((prevItems) => [...prevItems, image])}
+              <PrimaryButton
+                style={{ marginTop: "auto" }}
+                onClick={() => {
+                  setItems((prevItems) => [...prevItems, image]);
+                  setModalOpen(true);
+                }}
               >
-                Legg til i handlevogn
-              </Button>
+                Legg til i handlekurv
+              </PrimaryButton>
             )}
           </InfoContainer>
-        </ImageContainer>
+        </Container>
       </Section>
+      <Modal isOpen={modalOpen} onRequestClose={closeModal} style={modalStyles}>
+        <HandlevognModal image={image} onClick={closeModal} />
+      </Modal>
     </PageWrapper>
   );
 };

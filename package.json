@@ -19,6 +19,7 @@
     "react-firebase-hooks": "^3.0.4",
     "react-hook-form": "^7.18.0",
     "react-image-crop": "^9.0.4",
+    "react-modal": "^3.14.4",
     "underscore.string": "^3.3.5"
   },
   "devDependencies": {

@@ -9,6 +9,7 @@ import styled from "@emotion/styled";
 import { formatPictureRoute } from "../../routes/routes";
 import { device } from "../../styles/mixins";
 import firebase from "../../firebase/init";
+import { StyledImage, StyledImageDiv } from "../../styles/global";
 
 const PicturesGrid = styled.ul`
   @media (${device.FOR_TABLET_PORTRAIT_UP}) {
@@ -76,25 +77,14 @@ const CardLink = styled.a`
   text-decoration: none;
 `;
 
-const StyledImage = styled(Image)`
-  object-fit: contain;
-  width: 100% !important;
-  position: relative !important;
-  height: unset !important;
-`;
-
-const StyledImageDiv = styled.div`
-  width: 100%;
-
-  > div {
-    position: unset !important;
-  }
-`;
-
+// todo move
 // this adds space between every third number
 export const formatPrice = (price: number) => {
   return `kr ${numberFormat(price, 0, " ", " ")}`;
 };
+
+export const formatSize = (size: string) =>
+  size.replace("x", " x ").concat("cm");
 
 type Props = {
   images: ImageType[];

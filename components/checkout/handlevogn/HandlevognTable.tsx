@@ -6,7 +6,7 @@ import {
 import { CrossIcon } from "../../cross/CrossIcon";
 import { formatPictureRoute } from "../../../routes/routes";
 import { formatPrice } from "../../../pages/produkter";
-import { Button, ErrorSpan } from "../../../styles/global";
+import { PrimaryButton, ErrorSpan } from "../../../styles/global";
 import styled from "@emotion/styled";
 import React from "react";
 import { useFormContext } from "react-hook-form";
@@ -193,9 +193,9 @@ const HandlevognTable: React.FC<Props> = ({ onClick }) => {
           </TableRow>
         </tbody>
       </Table>
-      <Button type="button" onClick={handleSubmit(onClick)}>
+      <PrimaryButton type="button" onClick={handleSubmit(onClick)}>
         Fortsett
-      </Button>
+      </PrimaryButton>
     </>
   );
 };

@@ -23,11 +23,19 @@ export const globalStyles = (
   />
 );
 
-export const Button = styled.button`
+const Button = styled.button`
   color: white;
   height: 40px;
   border: none;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
+export const PrimaryButton = styled(Button)`
   background: #5d6956;
+`;
+
+export const SecondaryButton = styled(Button)`
+  background: #7a8475;
 `;
 
 export const Heading1 = styled.h1`
@@ -79,4 +87,29 @@ export const ErrorSpan = styled.span`
   margin-bottom: 16px;
 `;
 
+export const StyledImage = styled(Image)`
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+`;
+
+export const StyledImageDiv = styled.div`
+  width: 100%;
+
+  > div {
+    position: unset !important;
+  }
+`;
+
+export const modalStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 // todo buttons etc here

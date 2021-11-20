@@ -10,7 +10,7 @@ import {
   Heading1,
   Input,
   Label,
-  Button,
+  PrimaryButton,
   ErrorSpan,
 } from "../../styles/global";
 
@@ -79,11 +79,11 @@ const ImageUploadPage = () => {
         {imageUploadError && (
           <ErrorSpan>Du må laste opp bildet før du sender inn!</ErrorSpan>
         )}
-        <Button type="submit">Legg til</Button>
+        <PrimaryButton type="submit">Legg til</PrimaryButton>
         {successfullyUploaded && (
           <>
             <p>Flott! Bildet ble lagret.</p>
-            <Button
+            <PrimaryButton
               onClick={() => {
                 reset();
                 setSuccessfullyUploaded(false);
@@ -93,7 +93,7 @@ const ImageUploadPage = () => {
               }}
             >
               Start på nytt
-            </Button>
+            </PrimaryButton>
           </>
         )}
       </Form>

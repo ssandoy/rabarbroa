@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useFormContext } from "react-hook-form";
 import { useShoppingCartContext } from "../../../context/cart/ShoppingCartContext";
-import { Input, Label, Button, ErrorSpan } from "../../../styles/global";
+import { Input, Label, PrimaryButton, ErrorSpan } from "../../../styles/global";
 import { FormData } from "../domain";
 import { usePostalNumber } from "./usePostalNumber";
 import { useEffect } from "react";
@@ -85,7 +85,7 @@ const ContactInfo = () => {
         )}
       </InputContainer>
       <ButtonContainer>
-        <Button onClick={handleSubmit(onSubmit)}>Fortsett</Button>
+        <PrimaryButton onClick={handleSubmit(onSubmit)}>Fortsett</PrimaryButton>
       </ButtonContainer>
     </Container>
   );

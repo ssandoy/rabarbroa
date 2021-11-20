@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import firebase from "../../firebase/init";
 import styled from "@emotion/styled";
-import { Form, Input, Label, Button } from "../../styles/global";
+import { Form, Input, Label, PrimaryButton } from "../../styles/global";
 
 type Props = {
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
@@ -50,9 +50,9 @@ const LoginPage: React.FC<Props> = ({ setIsLoggedIn }) => {
           type="password"
           onChange={(event) => setInputPassword(event.target.value)}
         />
-        <Button style={{ marginTop: 8 }} type="submit">
+        <PrimaryButton style={{ marginTop: 8 }} type="submit">
           Logg inn
-        </Button>
+        </PrimaryButton>
         {isLoggingIn && <div>Logger inn...</div>}
         {error && <p>Feil passord!</p>}
       </Form>
