@@ -1,4 +1,6 @@
-export const CrossIcon = () => {
+import React from "react";
+
+export const CrossIcon: React.FC = () => {
   return (
     <svg
       width="16"

@@ -91,34 +91,40 @@ export const getStaticProps: GetStaticProps = async (): Promise<
   // todo fetch given documents from firebase instead?
   const carouselImages = [
     {
-      path: "/images/mange-bilder.jpg",
-      height: 300,
-      width: 300,
+      path: "/images/fargehav.jpg",
+      height: 500,
+      width: 500,
       alt: "Mange bilder",
     },
     {
-      path: "/images/fargerik.jpg",
-      height: 300,
-      width: 300,
-      alt: "Fargerik",
+      path: "/images/tredamer2.jpg",
+      height: 500,
+      width: 500,
+      alt: "Tre damer",
     },
     {
-      path: "/images/ballonger.png",
-      height: 300,
-      width: 300,
+      path: "/images/ballonger.jpg",
+      height: 500,
+      width: 400,
       alt: "Ballonger",
     },
     {
-      path: "/images/ansikt.png",
-      height: 300,
-      width: 300,
-      alt: "Ansikt",
+      path: "/images/farger.jpg",
+      height: 500,
+      width: 400,
+      alt: "Farger",
     },
     {
-      path: "/images/ond-stemor.png",
-      height: 300,
-      width: 300,
-      alt: "Ansikt",
+      path: "/images/trehus.jpg",
+      height: 500,
+      width: 400,
+      alt: "Tre hus",
+    },
+    {
+      path: "/images/tredamer.jpg",
+      height: 500,
+      width: 500,
+      alt: "Tre damer",
     },
   ];
   return {

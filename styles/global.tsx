@@ -1,6 +1,7 @@
 import { css, Global, keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { device } from "./mixins";
+import Image from "next/image";
 
 const globalBackgroundColor = "#F4F0EA";
 const globalTextColor = "black";
@@ -26,7 +27,7 @@ export const Button = styled.button`
   color: white;
   height: 40px;
   border: none;
-  background: rgba(122, 132, 117, 0.51);
+  background: #5d6956;
 `;
 
 export const Heading1 = styled.h1`
@@ -54,6 +55,7 @@ export const Input = styled.input<InputProps>`
   padding-left: 14px;
   border: none;
   box-shadow: inset 0px 1.5px 1.5px rgba(0, 0, 0, 0.25);
+  -webkit-appearance: none;
 `;
 
 export const Label = styled.label`

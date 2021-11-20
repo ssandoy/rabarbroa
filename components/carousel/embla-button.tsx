@@ -19,7 +19,7 @@ const EmblaButton = styled.button<ButtonProps>`
   height: 30px;
   justify-content: center;
   align-items: center;
-  fill: black;
+  fill: rgba(93, 105, 86, 0.56);
   padding: 0;
   left: ${({ isPrevious }) => (isPrevious ? "-25px" : "100")};
   right: ${({ isPrevious }) => (isPrevious ? "100" : "-25px")};
@@ -45,3 +45,28 @@ export const NextButton = ({ onClick }) => (
     </Svg>
   </EmblaButton>
 );
+
+const DotButt = styled.button<{ selected: boolean }>`
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  width: 30px;
+  height: 30px;
+  ::after {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 4px;
+    left: 0;
+
+    background-color: ${({ selected }) => (selected ? "#5D6956" : "lightgrey")};
+    border-radius: 2px;
+  }
+`;
+
+export const DotButton = ({ selected, onClick }) => {
+  return <DotButt onClick={onClick} selected={selected} />;
+};
