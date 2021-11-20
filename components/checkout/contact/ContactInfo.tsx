@@ -33,7 +33,11 @@ const ContactInfo = () => {
   const [{ city }, setPostalNumber] = usePostalNumber();
 
   useEffect(() => {
-    setValue("contactInfo.city", city);
+    if (city) {
+      setValue("contactInfo.city", city, {
+        shouldValidate: true,
+      });
+    }
   }, [city]);
 
   const onSubmit = () => {
@@ -59,7 +63,12 @@ const ContactInfo = () => {
         <Label>Postnummer</Label>
         <Input
           {...register("contactInfo.postalNumber", { required: true })}
-          onChange={(e) => setPostalNumber(e.target.value)}
+          onChange={(e) => {
+            setPostalNumber(e.target.value);
+            setValue("contactInfo.postalNumber", e.target.value, {
+              shouldValidate: true,
+            });
+          }}
         />
         {errors.contactInfo?.postalNumber && (
           <ErrorSpan>Du må skrive inn postnummer</ErrorSpan>
