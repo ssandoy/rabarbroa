@@ -4,6 +4,7 @@
 const nextConfig = {
   /* config options here */
   images: {
+    loaders: "cloudinary",
     domains: ["firebasestorage.googleapis.com", "res.cloudinary.com"],
   },
 };

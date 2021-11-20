@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 import MapPin from "../icons/map-pin/MapPin";
-import Image from "next/image";
-import { device } from "../../styles/mixins";
 import Instagram from "../icons/social-media/Instagram";
 import InfoCircle from "../icons/social-media/InfoCircle";
 

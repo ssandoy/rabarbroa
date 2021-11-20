@@ -76,7 +76,20 @@ const CardLink = styled.a`
   text-decoration: none;
 `;
 
-// const Image = styled.img``;
+const StyledImage = styled(Image)`
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+`;
+
+const StyledImageDiv = styled.div`
+  width: 100%;
+
+  > div {
+    position: unset !important;
+  }
+`;
 
 // this adds space between every third number
 export const formatPrice = (price: number) => {
@@ -86,6 +99,10 @@ export const formatPrice = (price: number) => {
 type Props = {
   images: ImageType[];
 };
+
+// https://res.cloudinary.com/XXX/image/upload/YYY/ZZZ.jpg
+const formatCloudinaryPic = (href: string) => (width: number) =>
+  href.replace("/upload", `/upload/w_${width}`);
 
 const Pictures: React.FC<Props> = ({ images }) => {
   return (
@@ -97,16 +114,16 @@ const Pictures: React.FC<Props> = ({ images }) => {
               <CardLink
                 href={formatPictureRoute(image.title.replace(" ", "-"))}
               >
-                <Image
-                  src={image.href}
-                  alt={image.title}
-                  width="100%"
-                  height="100%"
-                  layout="responsive"
-                  objectFit="contain"
-                  placeholder="blur"
-                  blurDataURL={image.href}
-                />
+                <StyledImageDiv>
+                  <StyledImage
+                    className="image"
+                    src={formatCloudinaryPic(image.href)(400)}
+                    alt={image.title}
+                    layout="fill"
+                    placeholder="blur"
+                    blurDataURL={formatCloudinaryPic(image.href)(300)}
+                  />
+                </StyledImageDiv>
                 <TextContainer>
                   <CardTitle>{image.title}</CardTitle>
                   <p>{formatPrice(image.price)}</p>
@@ -123,7 +140,6 @@ const Pictures: React.FC<Props> = ({ images }) => {
 export const getStaticProps: GetStaticProps = async (): Promise<
   GetStaticPropsResult<Props>
 > => {
-  // todo consider react-firebase-hooks inside component for live updates
   const snapshot = await firebase
     .firestore()
     .collection(INDICES.PICTURES_INDEX)
