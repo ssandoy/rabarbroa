@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
 import { useFormContext } from "react-hook-form";
 import { useShoppingCartContext } from "../../../context/cart/ShoppingCartContext";
-import { Input, Label, Button, ErrorSpan, Form } from "../../../styles/global";
+import { Input, Label, Button, ErrorSpan } from "../../../styles/global";
 import { FormData } from "../domain";
+import { usePostalNumber } from "./usePostalNumber";
+import { useEffect } from "react";
 
 const Container = styled.div`
   display: grid;
@@ -25,8 +27,14 @@ const ContactInfo = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useFormContext<FormData>();
+  const [{ city }, setPostalNumber] = usePostalNumber();
+
+  useEffect(() => {
+    setValue("contactInfo.city", city);
+  }, [city]);
 
   const onSubmit = () => {
     setFormStage("PAYMENT");
@@ -34,61 +42,44 @@ const ContactInfo = () => {
   return (
     <Container>
       <InputContainer>
-        <Label>Fornavn</Label>
-        <Input
-          width={200}
-          {...register("contactInfo.firstName", { required: true })}
-        />
-        {errors.contactInfo?.firstName && (
-          <ErrorSpan>Du må skrive inn fornavn</ErrorSpan>
-        )}
-      </InputContainer>
-      <InputContainer>
-        <Label>Etternavn</Label>
-        <Input
-          width={200}
-          {...register("contactInfo.lastName", { required: true })}
-        />
-        {errors.contactInfo?.lastName && (
-          <ErrorSpan>Du må skrive inn etternavn</ErrorSpan>
+        <Label>Navn</Label>
+        <Input {...register("contactInfo.name", { required: true })} />
+        {errors.contactInfo?.name && (
+          <ErrorSpan>Du må skrive inn navn</ErrorSpan>
         )}
       </InputContainer>
       <InputContainer>
         <Label>Adresse</Label>
-        <Input
-          width={200}
-          {...register("contactInfo.address", { required: true })}
-        />
+        <Input {...register("contactInfo.address", { required: true })} />
         {errors.contactInfo?.address && (
           <ErrorSpan>Du må skrive inn adresse</ErrorSpan>
         )}
       </InputContainer>
       <InputContainer>
-        <Label>Postnummer & By</Label>
+        <Label>Postnummer</Label>
         <Input
-          width={200}
-          {...register("contactInfo.postalNumberAndCity", { required: true })}
+          {...register("contactInfo.postalNumber", { required: true })}
+          onChange={(e) => setPostalNumber(e.target.value)}
         />
-        {errors.contactInfo?.postalNumberAndCity && (
-          <ErrorSpan>Du må skrive inn postnummer og by</ErrorSpan>
+        {errors.contactInfo?.postalNumber && (
+          <ErrorSpan>Du må skrive inn postnummer</ErrorSpan>
         )}
       </InputContainer>
       <InputContainer>
+        <Label>By</Label>
+        <Input {...register("contactInfo.city", { required: true })} />
+        {errors.contactInfo?.city && <ErrorSpan>Du må skrive inn by</ErrorSpan>}
+      </InputContainer>
+      <InputContainer>
         <Label>E-postadresse</Label>
-        <Input
-          width={200}
-          {...register("contactInfo.email", { required: true })}
-        />
+        <Input {...register("contactInfo.email", { required: true })} />
         {errors.contactInfo?.email && (
           <ErrorSpan>Du må skrive inn e-postadresse</ErrorSpan>
         )}
       </InputContainer>
       <InputContainer>
         <Label>Mobilnummer</Label>
-        <Input
-          width={200}
-          {...register("contactInfo.phoneNumber", { required: true })}
-        />
+        <Input {...register("contactInfo.phoneNumber", { required: true })} />
         {errors.contactInfo?.phoneNumber && (
           <ErrorSpan>Du må skrive inn mobilnummer</ErrorSpan>
         )}

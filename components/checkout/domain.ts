@@ -1,10 +1,10 @@
 export type ShippingType = "SPORING" | "USPORING" | "HENTE";
 
 interface ContactInfo {
-  firstName: string;
-  lastName: string;
+  name: string;
   address: string;
-  postalNumberAndCity: string; // todo..
+  postalNumber: string;
+  city: string;
   email: string;
   phoneNumber: string;
 }
