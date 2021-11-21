@@ -10,7 +10,6 @@ import { Heading1 } from "../../styles/global";
 import HandlevognTable from "../../components/checkout/handlevogn/HandlevognTable";
 import { PRODUCTS_ROUTE } from "../../routes/routes";
 import ContactInfo from "../../components/checkout/contact/ContactInfo";
-import { device } from "../../styles/mixins";
 import CheckoutBasket, {
   CheckoutStatus,
 } from "../../components/checkout/CheckoutBasket";
@@ -28,13 +27,9 @@ const EmptyContainer = styled.div`
 `;
 
 const Form = styled.form`
-  width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (${device.FOR_PHONE_ONLY}) {
-    width: 85vw;
-  }
 `;
 
 const calculateCheckoutStatus =

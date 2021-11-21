@@ -11,10 +11,10 @@ const CheckoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  width: 800px;
+  width: 750px;
   @media (${device.FOR_TABLET_PORTRAIT_DOWN}) {
     max-width: 600px;
-    width: 100%;
+    width: 85vw;
   }
   padding: 16px;
   margin-bottom: 24px;
