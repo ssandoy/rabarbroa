@@ -55,7 +55,6 @@ const Contact: React.FC = () => {
             <Label>Melding</Label>
             <textarea
               style={{
-                width: "100%",
                 height: 100,
                 border: "none",
                 boxShadow: "inset 0px 1.5px 1.5px rgba(0, 0, 0, 0.25)",

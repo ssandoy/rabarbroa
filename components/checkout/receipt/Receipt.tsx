@@ -5,5 +5,9 @@ const Container = styled.div`
 `;
 
 export const Receipt = () => {
-  return <Container>Takk for din handel!</Container>;
+  return (
+    <Container>
+      Takk for din handel! Her legger vi på en fin kvitteringsside :-)
+    </Container>
+  );
 };

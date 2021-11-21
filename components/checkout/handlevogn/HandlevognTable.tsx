@@ -15,6 +15,7 @@ import {
   shippingTypeToString,
   FormData,
 } from "../domain";
+import { device } from "../../../styles/mixins";
 
 const Table = styled.table`
   width: 100%;
@@ -29,7 +30,10 @@ const TableHeader = styled.th`
 
 const DataCell = styled.td`
   padding: 8px 0;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
+  @media (${device.FOR_PHONE_ONLY}) {
+    font-size: 0.8rem;
+  }
 `;
 
 const LeftDataCell = styled(DataCell)`
@@ -57,7 +61,9 @@ const RadioContainer = styled.div`
 `;
 
 const RadioLabel = styled.label`
-  font-size: 0.8rem;
+  @media (${device.FOR_PHONE_ONLY}) {
+    font-size: 0.8rem;
+  }
   margin-left: 4px;
 `;
 

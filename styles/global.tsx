@@ -66,7 +66,10 @@ export const Label = styled.label`
   padding-left: 2px;
   margin-top: 14px;
   margin-bottom: 4px;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
+  @media (${device.FOR_PHONE_ONLY}) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const CardContainer = styled.div`
@@ -77,7 +80,9 @@ export const CardContainer = styled.div`
 `;
 
 export const ErrorSpan = styled.span`
-  font-size: 0.7rem;
+  @media (${device.FOR_PHONE_ONLY}) {
+    font-size: 0.7rem;
+  }
   color: #e63d3d;
   margin-top: 8px;
   margin-bottom: 16px;

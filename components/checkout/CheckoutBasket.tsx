@@ -11,8 +11,9 @@ const CheckoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  width: 600px;
-  @media (${device.FOR_PHONE_ONLY}) {
+  width: 800px;
+  @media (${device.FOR_TABLET_PORTRAIT_DOWN}) {
+    max-width: 600px;
     width: 100%;
   }
   padding: 16px;
