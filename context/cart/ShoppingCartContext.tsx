@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { Image } from "../../firebase/types";
 
-export type FormStage = "CART" | "CONTACTINFO" | "PAYMENT";
+export type FormStage = "CART" | "CONTACTINFO" | "PAYMENT" | "RECEIPT";
 
 type ShoppingCartState = {
   items: Image[];

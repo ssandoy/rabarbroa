@@ -47,7 +47,7 @@ const Contact: React.FC = () => {
             Vi tar gjerne i mot tilbakemeldinger om siden! Du kan også stille
             spørsmål du lurer på her.
           </p>
-          <Form onSubmit={handleSubmit(onSubmit)}>
+          <Form style={{ width: 260 }} onSubmit={handleSubmit(onSubmit)}>
             <Label>Navn</Label>
             <Input {...register("name", { required: true })} />
             <Label>E-post</Label>
@@ -68,7 +68,7 @@ const Contact: React.FC = () => {
                 marginTop: "16px",
               }}
             >
-              Send melding
+              SEND MELDING
             </PrimaryButton>
           </Form>
         </>

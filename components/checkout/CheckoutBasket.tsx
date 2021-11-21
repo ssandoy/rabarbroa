@@ -27,10 +27,14 @@ type TitleProps = {
   isActive: boolean;
 };
 
-const Title = styled.h2<TitleProps>`
-  font-size: 1rem;
+const CheckoutTitle = styled.h2<TitleProps>`
+  font-size: 1.5rem;
+  @media (${device.FOR_PHONE_ONLY}) {
+    font-size: 1rem;
+  }
   font-weight: lighter;
-  color: ${({ isActive }) => (isActive ? "black" : "grey")};
+  color: #5d6956;
+  letter-spacing: 2px;
 `;
 
 export type CheckoutStatus = "TODO" | "ACTIVE" | "COMPLETED";
@@ -65,11 +69,11 @@ const CheckoutBasket: React.FC<Props> = ({
     <CheckoutContainer>
       <TitleContainer>
         {isCompleted(status) && (
-          <div style={{ marginRight: 8 }}>
+          <div style={{ marginRight: 8, marginTop: 4 }}>
             <CheckIcon />
           </div>
         )}
-        <Title isActive={isActive(status)}>{title}</Title>
+        <CheckoutTitle isActive={isActive(status)}>{title}</CheckoutTitle>
         {isCompleted(status) && (
           <Button type="button" onClick={() => setFormStage(formStage)}>
             ENDRE

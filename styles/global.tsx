@@ -29,6 +29,7 @@ const Button = styled.button`
   border: none;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  letter-spacing: 1px;
 `;
 
 export const PrimaryButton = styled(Button)`

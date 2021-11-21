@@ -1,20 +1,35 @@
 const CheckIcon = () => {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="icon icon-tabler icon-tabler-circle-check"
       width="32"
       height="32"
-      viewBox="0 0 24 24"
-      strokeWidth="1.5"
-      stroke="#00b341"
+      viewBox="0 0 66 63"
       fill="none"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <circle cx="12" cy="12" r="9" />
-      <path d="M9 12l2 2l4 -4" />
+      <path
+        d="M65 31.5C65 48.3014 50.7175 62 33 62C15.2825 62 1 48.3014 1 31.5C1 14.6986 15.2825 1 33 1C50.7175 1 65 14.6986 65 31.5Z"
+        stroke="#5D6956"
+        stroke-width="2"
+      />
+      <line
+        x1="22.1108"
+        y1="36.7889"
+        x2="30.7889"
+        y2="43.8892"
+        stroke="#7A8475"
+        stroke-width="3"
+        stroke-linecap="round"
+      />
+      <line
+        x1="43.6096"
+        y1="20.0319"
+        x2="31.0319"
+        y2="43.3904"
+        stroke="#7A8475"
+        stroke-width="3"
+        stroke-linecap="round"
+      />
     </svg>
   );
 };

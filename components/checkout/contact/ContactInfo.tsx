@@ -99,7 +99,7 @@ const ContactInfo = () => {
         )}
       </InputContainer>
       <ButtonContainer>
-        <PrimaryButton onClick={handleSubmit(onSubmit)}>Fortsett</PrimaryButton>
+        <PrimaryButton onClick={handleSubmit(onSubmit)}>FORTSETT</PrimaryButton>
       </ButtonContainer>
     </Container>
   );

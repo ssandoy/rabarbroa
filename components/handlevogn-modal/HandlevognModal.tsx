@@ -17,7 +17,7 @@ import { Image } from "../../firebase/types";
 const ModalContainer = styled.div`
   display: grid;
   grid-gap: 8px;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 20px 1fr;
   grid-template-columns: 1fr 1fr;
   @media (${device.FOR_PHONE_ONLY}) {
     grid-template-columns: 1fr;
@@ -28,6 +28,10 @@ const ModalContainer = styled.div`
 
 const ImageContainer = styled(StyledImageDiv)`
   width: 80%;
+  margin-bottom: 20px;
+  @media (${device.FOR_PHONE_ONLY}) {
+    width: 30%;
+  }
   justify-self: center;
 `;
 
@@ -57,7 +61,6 @@ const OrderPriceText = styled(OrderText)`
 `;
 
 const Heading = styled.h4`
-  align-self: flex-end;
   margin: 0;
   font-weight: lighter;
 `;
@@ -78,7 +81,6 @@ const RightColumnDiv = styled.div`
   flex-direction: column;
 `;
 
-// fixme size for largest pic
 export const HandlevognModal = ({
   image,
   onClick,
@@ -110,7 +112,7 @@ export const HandlevognModal = ({
               <OrderPriceText>{formatPrice(item.price)}</OrderPriceText>
             </div>
           ))}
-          <div style={{ marginTop: 40 }}>
+          <div style={{ marginTop: 24 }}>
             <OrderText>Totalt</OrderText>
           </div>
           <OrderPriceText>

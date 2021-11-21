@@ -1,29 +1,29 @@
 import styled from "@emotion/styled";
 import { useShoppingCartContext } from "../../../context/cart/ShoppingCartContext";
 import { VippsPayment } from "../../icons/vipps/VippsPayment";
-import { formatPrice } from "../../../pages/produkter";
+import { formatPrice, formatSize } from "../../../pages/produkter";
 import { calculateTotalPrice } from "../../../firebase/domain";
 import { useFormContext } from "react-hook-form";
 import { calculateShippingPrice, shippingTypeToString } from "../domain";
 
 const Container = styled.div``;
-const PaymentOptionContainer = styled.div``;
-const OrderContainer = styled.div`
-  background-color: #dee1e1;
+const PaymentOptionContainer = styled.div`
+  //padding-left: 24px;
 `;
+const OrderContainer = styled.div``;
 // todo style
 const OrderItem = styled.p`
-  display: flex;
-  width: 80%;
-  margin: 0;
-  justify-content: space-between;
   padding-left: 24px;
 `;
-const SmallText = styled.p`
+
+const Text = styled.p`
+  font-family: Arial, sans-serif;
+`;
+
+const SmallText = styled(Text)`
   font-size: 0.8rem;
   font-weight: lighter;
 `;
-const Text = styled.p``;
 const PaymentButton = styled.button`
   cursor: pointer;
   padding: 0;
@@ -35,20 +35,23 @@ const PaymentButton = styled.button`
 export const CheckoutPayment = () => {
   // todo ordreoversikt, paymentoptions.
   // todo betingelseR?
-  const { items } = useShoppingCartContext();
+  const { items, setFormStage } = useShoppingCartContext();
   const { watch } = useFormContext();
   const shippingType = watch("shippingType");
   const shippingPrice = calculateShippingPrice(shippingType);
   const totalPrice = calculateTotalPrice(items);
   return (
     <Container>
-      <SmallText>Ordreoversikt</SmallText>
       <OrderContainer>
         {items.map((item) => {
           return (
             <OrderItem>
-              <SmallText>{item.title}</SmallText>{" "}
-              <SmallText>{formatPrice(item.price)}</SmallText>
+              <SmallText>
+                1x {item.title} ({formatSize(item.size)})
+              </SmallText>
+              <SmallText style={{ fontWeight: "bold" }}>
+                {formatPrice(item.price)}
+              </SmallText>
             </OrderItem>
           );
         })}
@@ -58,15 +61,17 @@ export const CheckoutPayment = () => {
           </SmallText>
           <SmallText>{formatPrice(shippingPrice)}</SmallText>
         </OrderItem>
-        <div style={{ backgroundColor: "#d0d5d5" }}>
+        <div>
           <OrderItem>
-            <Text>Totalt</Text>
-            <Text>{formatPrice(totalPrice + shippingPrice)}</Text>
+            <Text style={{ fontWeight: "bold", margin: 0 }}>Totalt</Text>
+            <Text style={{ fontWeight: "bold", margin: 0 }}>
+              {formatPrice(totalPrice + shippingPrice)}
+            </Text>
           </OrderItem>
         </div>
       </OrderContainer>
       <PaymentOptionContainer>
-        <PaymentButton>
+        <PaymentButton onClick={() => setFormStage("RECEIPT")}>
           <VippsPayment />
         </PaymentButton>
       </PaymentOptionContainer>
