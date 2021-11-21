@@ -25,10 +25,8 @@ import {
 import { HandlevognModal } from "../../components/handlevogn-modal/HandlevognModal";
 
 const Container = styled.div`
-  margin: 2rem;
   display: grid;
   grid-template-rows: 1fr;
-
   grid-template-columns: 1fr 1fr;
   @media (${device.FOR_TABLET_PORTRAIT_DOWN}) {
     width: 75vw;
@@ -36,8 +34,15 @@ const Container = styled.div`
   }
   @media (${device.FOR_TABLET_PORTRAIT_UP}) {
     max-width: 800px;
+    margin: 1rem;
   }
   grid-gap: 2rem;
+`;
+
+const ReturnHeading = styled.h2`
+  font-weight: lighter;
+  margin: 12px 0;
+  font-size: 1rem;
 `;
 
 const InfoContainer = styled.div`
@@ -74,16 +79,19 @@ const Id: React.FC<Props> = ({ image }) => {
       <Head>
         <title>{image.title}</title>
       </Head>
-      <h2>
-        <Link href={PRODUCTS_ROUTE}>
-          <a style={{ color: "black" }}>Tilbake</a>
-        </Link>
-      </h2>
+
       <Section>
         <Container>
-          <StyledImageDiv>
-            <StyledImage src={image.href} alt={image.title} layout="fill" />
-          </StyledImageDiv>
+          <div>
+            <ReturnHeading>
+              <Link href={PRODUCTS_ROUTE}>
+                <a style={{ color: "black" }}>Tilbake til produkter</a>
+              </Link>
+            </ReturnHeading>
+            <StyledImageDiv>
+              <StyledImage src={image.href} alt={image.title} layout="fill" />
+            </StyledImageDiv>
+          </div>
           <InfoContainer>
             <Heading1 style={{ margin: "8px 0" }}>{image.title}</Heading1>
             <InfoText>{formatSize(image.size)}</InfoText>
