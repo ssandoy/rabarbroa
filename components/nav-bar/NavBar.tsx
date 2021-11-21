@@ -11,7 +11,7 @@ import {
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 1rrem;
 `;
 
 const NavBar = () => {

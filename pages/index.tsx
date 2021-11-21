@@ -15,7 +15,7 @@ type Props = {
 };
 
 const Container = styled.div`
-  padding: 0 3rem;
+  padding: 0 3rrem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -41,7 +41,7 @@ const IntroTitle = styled.h2`
   top: -34px;
   left: 8px;
   @media (${device.FOR_PHONE_ONLY}) {
-    font-size: 1.1em;
+    font-size: 1.1rem;
   }
 `;
 
@@ -51,7 +51,7 @@ const IntroText = styled.p`
   letter-spacing: 2px;
   font-family: Arial, sans-serif;
   @media (${device.FOR_PHONE_ONLY}) {
-    font-size: 0.9em;
+    font-size: 0.9rem;
   }
 `;
 

@@ -54,7 +54,6 @@ export const CroppedImageUploader: React.FC<Props> = ({
   );
 
   const handleUpload = async () => {
-    // fixme width of image somehjow
     if (imageElement) {
       setIsUploading(true);
       const croppedImage = await getCroppedImage(imageElement, crop, fileName);
@@ -97,7 +96,7 @@ export const CroppedImageUploader: React.FC<Props> = ({
 
   return (
     <FileInputContainer>
-      <Label style={{ fontSize: "0.9em" }} htmlFor="file-upload">
+      <Label style={{ fontSize: "0.9rem" }} htmlFor="file-upload">
         <p>
           <span role="img" aria-label="folder-icon">
             📁{" "}

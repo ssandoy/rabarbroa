@@ -44,7 +44,6 @@ const MammaContainer = styled(CardContainer)`
   }
 `;
 
-// fixme size change for desktop?
 const About = () => {
   return (
     <PageWrapper>

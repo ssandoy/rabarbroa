@@ -22,13 +22,11 @@ const ModalContainer = styled.div`
   @media (${device.FOR_PHONE_ONLY}) {
     grid-template-columns: 1fr;
   }
+  max-width: 1000px;
   width: 80vw;
 `;
 
 const ImageContainer = styled(StyledImageDiv)`
-  @media (${device.FOR_PHONE_ONLY}) {
-    width: 40%;
-  }
   width: 80%;
   justify-self: center;
 `;
@@ -41,7 +39,11 @@ const OrderText = styled.p`
 `;
 
 const HeadingContainer = styled.div`
-  margin-left: 40px;
+  margin-left: 48px;
+  @media (${device.FOR_PHONE_ONLY}) {
+    margin-left: auto;
+    margin-right: auto;
+  }
   @media (${device.FOR_TABLET_PORTRAIT_UP}) {
     grid-column: 1/3;
   }
@@ -76,6 +78,7 @@ const RightColumnDiv = styled.div`
   flex-direction: column;
 `;
 
+// fixme size for largest pic
 export const HandlevognModal = ({
   image,
   onClick,

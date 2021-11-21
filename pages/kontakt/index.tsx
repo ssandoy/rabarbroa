@@ -43,7 +43,7 @@ const Contact: React.FC = () => {
       <Heading1>Kontaktskjema</Heading1>
       {!hasSubmitted ? (
         <>
-          <p style={{ textAlign: "center", fontSize: "0.9em", width: "80%" }}>
+          <p style={{ textAlign: "center", fontSize: "0.9rem", width: "80%" }}>
             Vi tar gjerne i mot tilbakemeldinger om siden! Du kan også stille
             spørsmål du lurer på her.
           </p>

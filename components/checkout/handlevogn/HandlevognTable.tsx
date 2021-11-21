@@ -29,7 +29,7 @@ const TableHeader = styled.th`
 
 const DataCell = styled.td`
   padding: 8px 0;
-  font-size: 0.8em;
+  font-size: 0.8rem;
 `;
 
 const LeftDataCell = styled(DataCell)`
@@ -57,7 +57,7 @@ const RadioContainer = styled.div`
 `;
 
 const RadioLabel = styled.label`
-  font-size: 0.9em;
+  font-size: 0.8rem;
   margin-left: 4px;
 `;
 

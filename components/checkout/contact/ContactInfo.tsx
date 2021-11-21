@@ -5,6 +5,7 @@ import { Input, Label, PrimaryButton, ErrorSpan } from "../../../styles/global";
 import { FormData } from "../domain";
 import { usePostalNumber } from "./usePostalNumber";
 import { useEffect } from "react";
+import { device } from "../../../styles/mixins";
 
 const Container = styled.div`
   display: grid;
@@ -14,6 +15,10 @@ const Container = styled.div`
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 250px;
+  @media (${device.FOR_PHONE_ONLY}) {
+    width: 140px;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -47,20 +52,14 @@ const ContactInfo = () => {
     <Container>
       <InputContainer>
         <Label>Navn</Label>
-        <Input
-          width={200}
-          {...register("contactInfo.name", { required: true })}
-        />
+        <Input {...register("contactInfo.name", { required: true })} />
         {errors.contactInfo?.name && (
           <ErrorSpan>Du må skrive inn navn</ErrorSpan>
         )}
       </InputContainer>
       <InputContainer>
         <Label>Adresse</Label>
-        <Input
-          width={200}
-          {...register("contactInfo.address", { required: true })}
-        />
+        <Input {...register("contactInfo.address", { required: true })} />
         {errors.contactInfo?.address && (
           <ErrorSpan>Du må skrive inn adresse</ErrorSpan>
         )}
@@ -82,28 +81,19 @@ const ContactInfo = () => {
       </InputContainer>
       <InputContainer>
         <Label>By</Label>
-        <Input
-          width={200}
-          {...register("contactInfo.city", { required: true })}
-        />
+        <Input {...register("contactInfo.city", { required: true })} />
         {errors.contactInfo?.city && <ErrorSpan>Du må skrive inn by</ErrorSpan>}
       </InputContainer>
       <InputContainer>
         <Label>E-postadresse</Label>
-        <Input
-          width={200}
-          {...register("contactInfo.email", { required: true })}
-        />
+        <Input {...register("contactInfo.email", { required: true })} />
         {errors.contactInfo?.email && (
           <ErrorSpan>Du må skrive inn e-postadresse</ErrorSpan>
         )}
       </InputContainer>
       <InputContainer>
         <Label>Mobilnummer</Label>
-        <Input
-          width={200}
-          {...register("contactInfo.phoneNumber", { required: true })}
-        />
+        <Input {...register("contactInfo.phoneNumber", { required: true })} />
         {errors.contactInfo?.phoneNumber && (
           <ErrorSpan>Du må skrive inn mobilnummer</ErrorSpan>
         )}

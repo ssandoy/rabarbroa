@@ -20,7 +20,7 @@ const OrderItem = styled.p`
   padding-left: 24px;
 `;
 const SmallText = styled.p`
-  font-size: 0.8em;
+  font-size: 0.8rem;
   font-weight: lighter;
 `;
 const Text = styled.p``;

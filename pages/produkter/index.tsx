@@ -13,18 +13,18 @@ import { StyledImage, StyledImageDiv } from "../../styles/global";
 
 const PicturesGrid = styled.ul`
   @media (${device.FOR_TABLET_PORTRAIT_UP}) {
-    padding: 0 2rem;
+    padding: 0 2rrem;
     width: 80vw;
     max-width: 1200px;
   }
   column-count: 3;
   list-style: none outside;
-  column-gap: 3em;
-  row-gap: 3em;
+  column-gap: 3rem;
+  row-gap: 3rem;
   padding-inline-start: 0;
   @media (${device.FOR_PHONE_ONLY}) {
     column-count: 2;
-    column-gap: 1em;
+    column-gap: 1rem;
     margin: 0 16px;
   }
 `;
@@ -52,8 +52,8 @@ const CardTitle = styled.p`
 
 const ListItem = styled.li`
   overflow: hidden;
-  padding: 1.5em 1em 1em;
-  margin-bottom: 3em;
+  padding: 1.5em 1em 1rem;
+  margin-bottom: 3rem;
   break-inside: avoid;
   text-align: left;
   text-decoration: none;

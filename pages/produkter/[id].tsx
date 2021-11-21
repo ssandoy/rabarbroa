@@ -25,7 +25,7 @@ import {
 import { HandlevognModal } from "../../components/handlevogn-modal/HandlevognModal";
 
 const Container = styled.div`
-  margin: 2em;
+  margin: 2rem;
   display: grid;
   grid-template-rows: 1fr;
 
@@ -37,7 +37,7 @@ const Container = styled.div`
   @media (${device.FOR_TABLET_PORTRAIT_UP}) {
     max-width: 800px;
   }
-  grid-gap: 2em;
+  grid-gap: 2rem;
 `;
 
 const InfoContainer = styled.div`
@@ -102,7 +102,7 @@ const Id: React.FC<Props> = ({ image }) => {
               </PrimaryButton>
             ) : (
               <PrimaryButton
-                style={{ marginTop: "auto", fontSize: "1em" }}
+                style={{ marginTop: "auto", fontSize: "1rem" }}
                 onClick={() => {
                   setItems((prevItems) => [...prevItems, image]);
                   setModalOpen(true);

@@ -19,7 +19,7 @@ import { CheckoutPayment } from "../../components/checkout/payment/CheckoutPayme
 import { FormData } from "../../components/checkout/domain";
 
 const Paragraph = styled.p`
-  font-size: 1em;
+  font-size: 1rem;
 `;
 
 const EmptyContainer = styled.div`

@@ -17,7 +17,7 @@ const Container = styled.footer`
 `;
 
 const Text = styled.p<{ bold?: boolean }>`
-  font-size: 0.8em;
+  font-size: 0.8rem;
   margin: 4px;
   font-weight: ${({ bold }) => (bold ? "bold" : "normal")};
   text-align: center;

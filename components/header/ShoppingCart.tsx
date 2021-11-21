@@ -13,7 +13,7 @@ const ShoppingCart: React.FC<Props> = ({ numberOfItems }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <text x="15" y="22" fill="#5D6956" fontSize="0.6em">
+      <text x="15" y="22" fill="#5D6956" fontSize="0.6rem">
         {numberOfItems}
       </text>
       <rect

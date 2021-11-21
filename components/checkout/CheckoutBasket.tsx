@@ -28,7 +28,7 @@ type TitleProps = {
 };
 
 const Title = styled.h2<TitleProps>`
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: lighter;
   color: ${({ isActive }) => (isActive ? "black" : "grey")};
 `;

@@ -12,11 +12,11 @@ const LoginContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2em;
+  margin: 2rem;
 `;
 
 const Heading = styled.h1`
-  font-size: 1.2em;
+  font-size: 1.2rem;
   margin: 0;
 `;
 
