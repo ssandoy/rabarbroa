@@ -31,12 +31,13 @@ const Container = styled.div`
   @media (${device.FOR_TABLET_PORTRAIT_DOWN}) {
     width: 75vw;
     grid-template-columns: 1fr;
+    grid-gap: 8px;
   }
   @media (${device.FOR_TABLET_PORTRAIT_UP}) {
     max-width: 800px;
-    margin: 1rem;
+    margin: 16px;
   }
-  grid-gap: 2rem;
+  grid-gap: 32px;
 `;
 
 const ReturnHeading = styled.h2`
@@ -49,11 +50,16 @@ const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-align: right;
+  padding-top: 32px;
+  @media (${device.FOR_PHONE_ONLY}) {
+    padding-top: 0;
+    margin-top: 0;
+  }
 `;
 
 const InfoText = styled.p`
   font-family: Arial, Helvetica, sans-serif;
-  margin: 8px 0;
+  margin: 12px 0;
 `;
 
 const Section = styled.section`
@@ -93,8 +99,11 @@ const Id: React.FC<Props> = ({ image }) => {
             </StyledImageDiv>
           </div>
           <InfoContainer>
-            <Heading1 style={{ margin: "8px 0" }}>{image.title}</Heading1>
+            <Heading1 style={{ margin: "8px 0 0 0", fontSize: "2rem" }}>
+              {image.title}
+            </Heading1>
             <InfoText>{formatSize(image.size)}</InfoText>
+            <InfoText>Håndtegnet på lerret med tusj.</InfoText>
             <InfoText style={{ fontWeight: "bold" }}>
               {formatPrice(image.price)}
             </InfoText>

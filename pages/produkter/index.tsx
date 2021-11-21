@@ -61,7 +61,7 @@ const ListItem = styled.li`
   box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 
-  transition: transform 0.3s ease-in;
+  transition: transform 0.15s ease-in;
   transform-origin: top center;
   :hover,
   :focus-within {
@@ -116,6 +116,7 @@ const Pictures: React.FC<Props> = ({ images }) => {
                 </StyledImageDiv>
                 <TextContainer>
                   <CardTitle>{image.title}</CardTitle>
+                  <p>{formatSize(image.size)}</p>
                   <p>{formatPrice(image.price)}</p>
                 </TextContainer>
               </CardLink>
