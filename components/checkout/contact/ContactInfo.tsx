@@ -47,14 +47,20 @@ const ContactInfo = () => {
     <Container>
       <InputContainer>
         <Label>Navn</Label>
-        <Input {...register("contactInfo.name", { required: true })} />
+        <Input
+          width={200}
+          {...register("contactInfo.name", { required: true })}
+        />
         {errors.contactInfo?.name && (
           <ErrorSpan>Du må skrive inn navn</ErrorSpan>
         )}
       </InputContainer>
       <InputContainer>
         <Label>Adresse</Label>
-        <Input {...register("contactInfo.address", { required: true })} />
+        <Input
+          width={200}
+          {...register("contactInfo.address", { required: true })}
+        />
         {errors.contactInfo?.address && (
           <ErrorSpan>Du må skrive inn adresse</ErrorSpan>
         )}
@@ -76,19 +82,28 @@ const ContactInfo = () => {
       </InputContainer>
       <InputContainer>
         <Label>By</Label>
-        <Input {...register("contactInfo.city", { required: true })} />
+        <Input
+          width={200}
+          {...register("contactInfo.city", { required: true })}
+        />
         {errors.contactInfo?.city && <ErrorSpan>Du må skrive inn by</ErrorSpan>}
       </InputContainer>
       <InputContainer>
         <Label>E-postadresse</Label>
-        <Input {...register("contactInfo.email", { required: true })} />
+        <Input
+          width={200}
+          {...register("contactInfo.email", { required: true })}
+        />
         {errors.contactInfo?.email && (
           <ErrorSpan>Du må skrive inn e-postadresse</ErrorSpan>
         )}
       </InputContainer>
       <InputContainer>
         <Label>Mobilnummer</Label>
-        <Input {...register("contactInfo.phoneNumber", { required: true })} />
+        <Input
+          width={200}
+          {...register("contactInfo.phoneNumber", { required: true })}
+        />
         {errors.contactInfo?.phoneNumber && (
           <ErrorSpan>Du må skrive inn mobilnummer</ErrorSpan>
         )}

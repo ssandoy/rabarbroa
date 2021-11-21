@@ -38,7 +38,6 @@ const LeftDataCell = styled(DataCell)`
 
 const CenterDataCell = styled(DataCell)`
   text-align: center;
-  cursor: pointer;
 `;
 
 const RightDataCell = styled(DataCell)`

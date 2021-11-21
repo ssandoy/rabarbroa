@@ -85,7 +85,7 @@ const Id: React.FC<Props> = ({ image }) => {
             <StyledImage src={image.href} alt={image.title} layout="fill" />
           </StyledImageDiv>
           <InfoContainer>
-            <Heading1 style={{ margin: 8 }}>{image.title}</Heading1>
+            <Heading1 style={{ margin: "8px 0" }}>{image.title}</Heading1>
             <InfoText>{formatSize(image.size)}</InfoText>
             <InfoText style={{ fontWeight: "bold" }}>
               {formatPrice(image.price)}
