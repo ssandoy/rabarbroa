@@ -29,18 +29,30 @@ const IntroContainer = styled.div`
   padding: 24px;
   width: 60vw;
   max-width: 600px;
-  margin-top: 24px;
+  margin-top: 40px;
 `;
 
 const IntroTitle = styled.h2`
   color: black;
   font-weight: lighter;
   margin: 0;
+  letter-spacing: 4px;
+  position: absolute;
+  top: -34px;
+  left: 8px;
+  @media (${device.FOR_PHONE_ONLY}) {
+    font-size: 1.1em;
+  }
 `;
 
 const IntroText = styled.p`
   color: black;
   text-align: center;
+  letter-spacing: 2px;
+  font-family: Arial, sans-serif;
+  @media (${device.FOR_PHONE_ONLY}) {
+    font-size: 0.9em;
+  }
 `;
 
 const BottomBox = styled.div`
@@ -58,7 +70,9 @@ const TopBox = styled.div`
   height: 24px;
   width: 20%;
   @media (${device.FOR_PHONE_ONLY}) {
-    width: 40%;
+    width: 30%;
+    height: 16px;
+    top: -6px;
   }
   top: -8px;
   right: -16px;
@@ -69,12 +83,10 @@ const Home: React.FC<Props> = ({ carouselImages }) => {
   return (
     <PageWrapper>
       <Container>
-        <div style={{ marginTop: 24 }}>
-          <EmblaCarousel images={carouselImages} />
-        </div>
+        <EmblaCarousel images={carouselImages} />
         <IntroContainer>
           <TopBox />
-          <IntroTitle>Kaos. Farger. Liv</IntroTitle>
+          <IntroTitle>Kaos. Farger. Liv.</IntroTitle>
           <IntroText>
             Norske originaler, tegnet og malt på Sør-Helgeland.
           </IntroText>

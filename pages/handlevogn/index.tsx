@@ -18,8 +18,8 @@ import CheckoutBasket, {
 import { CheckoutPayment } from "../../components/checkout/payment/CheckoutPayment";
 import { FormData } from "../../components/checkout/domain";
 
-const SmallParagrah = styled.p`
-  font-size: 0.8em;
+const Paragraph = styled.p`
+  font-size: 1em;
 `;
 
 const EmptyContainer = styled.div`
@@ -65,10 +65,10 @@ const ShoppingCart = () => {
   if (items.length === 0) {
     return (
       <EmptyContainer>
-        <SmallParagrah>Handlevognen er for øyeblikket tom.</SmallParagrah>
-        <SmallParagrah>
+        <Paragraph>Handlevognen er for øyeblikket tom.</Paragraph>
+        <Paragraph>
           Utforsk bildene til salgs <Link href={PRODUCTS_ROUTE}>her</Link>
-        </SmallParagrah>
+        </Paragraph>
       </EmptyContainer>
     );
   }

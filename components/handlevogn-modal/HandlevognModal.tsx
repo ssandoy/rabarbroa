@@ -60,7 +60,18 @@ const Heading = styled.h4`
   font-weight: lighter;
 `;
 
+const SubHeading = styled.h4`
+  margin: 0;
+  font-weight: lighter;
+`;
+
 const ButtonGroup = styled.div`
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+`;
+
+const RightColumnDiv = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -85,8 +96,8 @@ export const HandlevognModal = ({
       <ImageContainer>
         <StyledImage src={image.href} alt={image.title} layout="fill" />
       </ImageContainer>
-      <div>
-        <Heading>Handlekurv</Heading>
+      <RightColumnDiv>
+        <SubHeading>Handlekurv</SubHeading>
         <OrderGrid>
           {items.map((item) => (
             <div style={{ margin: "16px 0" }}>
@@ -103,21 +114,21 @@ export const HandlevognModal = ({
             {formatPrice(calculateTotalPrice(items))}
           </OrderPriceText>
         </OrderGrid>
-        <ButtonGroup style={{ marginTop: 16 }}>
+        <ButtonGroup>
           <SecondaryButton
             style={{ margin: "4px 0" }}
             onClick={() => router.push(PRODUCTS_ROUTE)}
           >
-            Fortsett å handle
+            FORTSETT Å HANDLE
           </SecondaryButton>
           <PrimaryButton
             onClick={() => router.push(SHOPPING_CART_ROUTE)}
             style={{ margin: "4px 0" }}
           >
-            Gå til handlekurv
+            GÅ TIL HANDLEKURV
           </PrimaryButton>
         </ButtonGroup>
-      </div>
+      </RightColumnDiv>
     </ModalContainer>
   );
 };

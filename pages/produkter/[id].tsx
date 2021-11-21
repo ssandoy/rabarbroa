@@ -25,16 +25,17 @@ import {
 import { HandlevognModal } from "../../components/handlevogn-modal/HandlevognModal";
 
 const Container = styled.div`
-  max-width: 600px;
   margin: 2em;
   display: grid;
   grid-template-rows: 1fr;
+
   grid-template-columns: 1fr 1fr;
-  @media (${device.FOR_PHONE_ONLY}) {
+  @media (${device.FOR_TABLET_PORTRAIT_DOWN}) {
+    width: 75vw;
     grid-template-columns: 1fr;
   }
   @media (${device.FOR_TABLET_PORTRAIT_UP}) {
-    min-width: 100%;
+    max-width: 800px;
   }
   grid-gap: 2em;
 `;
@@ -101,13 +102,13 @@ const Id: React.FC<Props> = ({ image }) => {
               </PrimaryButton>
             ) : (
               <PrimaryButton
-                style={{ marginTop: "auto" }}
+                style={{ marginTop: "auto", fontSize: "1em" }}
                 onClick={() => {
                   setItems((prevItems) => [...prevItems, image]);
                   setModalOpen(true);
                 }}
               >
-                Legg til i handlekurv
+                LEGG TIL I HANDLEKURV
               </PrimaryButton>
             )}
           </InfoContainer>

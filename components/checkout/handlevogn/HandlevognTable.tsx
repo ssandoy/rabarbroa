@@ -194,7 +194,7 @@ const HandlevognTable: React.FC<Props> = ({ onClick }) => {
         </tbody>
       </Table>
       <PrimaryButton type="button" onClick={handleSubmit(onClick)}>
-        Fortsett
+        FORTSETT
       </PrimaryButton>
     </>
   );

@@ -31,10 +31,12 @@ const Button = styled.button`
 `;
 
 export const PrimaryButton = styled(Button)`
+  font-size: 1em;
   background: #5d6956;
 `;
 
 export const SecondaryButton = styled(Button)`
+  font-size: 1em;
   background: #7a8475;
 `;
 
@@ -56,7 +58,7 @@ type InputProps = {
 
 export const Input = styled.input<InputProps>`
   width: ${({ width }) => (width ? `${width}px` : "300px")};
-  @media (${device.FOR_PHONE_ONLY}) {
+  @media (${device.FOR_TABLET_PORTRAIT_DOWN}) {
     width: 70%;
   }
   height: 30px;
@@ -70,7 +72,7 @@ export const Label = styled.label`
   padding-left: 2px;
   margin-top: 14px;
   margin-bottom: 4px;
-  font-size: 0.8em;
+  font-size: 0.9em;
 `;
 
 export const CardContainer = styled.div`

@@ -12,13 +12,11 @@ const HeaderContainer = styled.header`
   flex-direction: column;
   width: 100%;
   padding-bottom: 24px;
-  border-bottom: 1px solid #eaeaea;
   align-items: center;
 `;
 
 const NavContainer = styled.div`
   padding: 0;
-  //margin-top: -24px;
 `;
 
 const LogoContainer = styled.div`
