@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import PageWrapper from "../components/page-wrapper/page-wrapper";
 import { INTRO_ROUTE } from "../routes/routes";
+import { Heading1, PrimaryButton } from "../styles/global";
 
 const Container = styled.div`
   display: flex;
@@ -12,18 +14,16 @@ const Container = styled.div`
 `;
 
 const Custom404 = () => {
+  const router = useRouter();
   return (
     <PageWrapper>
       <Container>
-        <h1>
+        <Heading1>
           Ups! <br /> Her klarte vi ikke å finne noe innhold, gitt!
-        </h1>
-        <p>
-          <Link href={INTRO_ROUTE}>
-            <a style={{ color: "white" }}>Her</a>
-          </Link>{" "}
-          kan du gå tilbake til startsiden og prøve igjen
-        </p>
+        </Heading1>
+        <PrimaryButton onClick={() => router.push(INTRO_ROUTE)}>
+          Gå tilbake til startsiden
+        </PrimaryButton>
       </Container>
     </PageWrapper>
   );

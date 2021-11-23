@@ -23,6 +23,7 @@ import {
   removeImageFromImages,
 } from "../../firebase/domain";
 import { HandlevognModal } from "../../components/handlevogn-modal/HandlevognModal";
+import Custom404 from "../404";
 
 const Container = styled.div`
   display: grid;
@@ -78,6 +79,11 @@ const Id: React.FC<Props> = ({ image }) => {
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  // todo why is this necessary
+  if (image === null) {
+    return <Custom404 />;
+  }
 
   const imageInShoppingCart = imageListContainsImage(items)(image);
   return (
@@ -163,10 +169,10 @@ export const getStaticProps: GetStaticProps = async ({
     .collection(INDICES.PICTURES_INDEX)
     .where("title", "==", id.replace("-", " "))
     .get();
-  const image = snapshot.docs[0].data() as ImageType;
+  const image = snapshot.docs[0]?.data() as ImageType;
   return {
     props: {
-      image,
+      image: image ?? null,
     },
     revalidate: 60,
   };
