@@ -27,7 +27,7 @@ const ButtonContainer = styled.div`
 `;
 
 const ContactInfo = () => {
-  const { setFormStage } = useShoppingCartContext();
+  const { setActiveFormStage } = useShoppingCartContext();
   // todo validation
   const {
     register,
@@ -46,7 +46,7 @@ const ContactInfo = () => {
   }, [city]);
 
   const onSubmit = () => {
-    setFormStage("PAYMENT");
+    setActiveFormStage("PAYMENT");
   };
   return (
     <Container>

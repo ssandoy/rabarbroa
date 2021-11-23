@@ -15,12 +15,6 @@ const LoginContainer = styled.div`
   margin: 2rem;
 `;
 
-const Heading = styled.h1`
-  font-size: 1.2rem;
-  margin: 0;
-`;
-
-// todo styling..
 const LoginPage: React.FC<Props> = ({ setIsLoggedIn }) => {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [inputPassword, setInputPassword] = useState("");

@@ -65,7 +65,7 @@ const CheckoutBasket: React.FC<Props> = ({
   formStage,
   children,
 }) => {
-  const { setFormStage } = useShoppingCartContext();
+  const { setActiveFormStage } = useShoppingCartContext();
   return (
     <CheckoutContainer>
       <TitleContainer>
@@ -76,7 +76,7 @@ const CheckoutBasket: React.FC<Props> = ({
         )}
         <CheckoutTitle isActive={isActive(status)}>{title}</CheckoutTitle>
         {isCompleted(status) && (
-          <Button type="button" onClick={() => setFormStage(formStage)}>
+          <Button type="button" onClick={() => setActiveFormStage(formStage)}>
             ENDRE
           </Button>
         )}

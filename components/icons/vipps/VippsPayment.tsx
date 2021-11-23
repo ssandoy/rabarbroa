@@ -1,5 +1,3 @@
-// todo props
-
 export const VippsPayment = () => {
   return (
     <svg

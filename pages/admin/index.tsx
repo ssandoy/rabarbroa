@@ -1,12 +1,12 @@
 import { useAdminContext } from "../../context/admin/AdminContext";
 import LoginPage from "./LoginPage";
-import ImageUploadPage from "./ImageUploadPage";
+import ImageUpload from "../../components/image-upload/ImageUpload";
 
 const Admin = () => {
   const { isLoggedIn, setIsLoggedIn } = useAdminContext();
 
   return isLoggedIn ? (
-    <ImageUploadPage />
+    <ImageUpload />
   ) : (
     <LoginPage setIsLoggedIn={setIsLoggedIn} />
   );

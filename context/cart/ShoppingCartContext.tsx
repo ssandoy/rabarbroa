@@ -12,8 +12,8 @@ export type FormStage = "CART" | "CONTACTINFO" | "PAYMENT" | "RECEIPT";
 type ShoppingCartState = {
   items: Image[];
   setItems: Dispatch<SetStateAction<Image[]>>;
-  formStage: FormStage; // todo rename
-  setFormStage: Dispatch<SetStateAction<FormStage>>;
+  activeFormStage: FormStage;
+  setActiveFormStage: Dispatch<SetStateAction<FormStage>>;
 };
 
 const ShoppingCartContext = React.createContext<ShoppingCartState | undefined>(
@@ -24,7 +24,7 @@ export const SHOPPING_CART_KEY = "shopping-cart";
 
 const ShoppingCardProvider = (props) => {
   const [items, setItems] = useState([]);
-  const [formStage, setFormStage] = useState<FormStage>("CART");
+  const [activeFormStage, setActiveFormStage] = useState<FormStage>("CART");
 
   useEffect(() => {
     const localStorageCart = localStorage.getItem(SHOPPING_CART_KEY);
@@ -41,10 +41,10 @@ const ShoppingCardProvider = (props) => {
     () => ({
       items,
       setItems,
-      formStage,
-      setFormStage,
+      activeFormStage,
+      setActiveFormStage,
     }),
-    [items, formStage]
+    [items, activeFormStage]
   );
 
   return <ShoppingCartContext.Provider value={value} {...props} />;

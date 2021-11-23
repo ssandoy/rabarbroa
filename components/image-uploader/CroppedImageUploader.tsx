@@ -1,13 +1,11 @@
 import React, { useRef, useState } from "react";
 import ReactCrop, { Crop } from "react-image-crop";
 
-import firebase from "../../firebase/init";
 import { getCroppedImage } from "./utils/img";
 import styled from "@emotion/styled";
 import { Label } from "../../styles/global";
 
 type Props = {
-  firebaseStorageRef: string;
   title?: string;
   handleUpdateComplete?: (uploadUrl: string) => void;
   buttonUploadText?: string;
@@ -36,13 +34,12 @@ const FileInputContainer = styled.div`
 `;
 
 export const CroppedImageUploader: React.FC<Props> = ({
-  firebaseStorageRef,
   handleUpdateComplete,
   buttonUploadText = "Last opp",
 }: Props) => {
   const myRef = useRef(null);
   // todo why on earth does this not throw ts errro
-  const [crop, setCrop] = useState<Crop | null>(null);
+  const [crop, setCrop] = useState<Crop>();
   const [fileName, setFileName] = useState<string>("");
   const [fileLocation, setFileLocation] = useState<string>("");
   const [isUploading, setIsUploading] = useState(false);
@@ -141,5 +138,3 @@ export const CroppedImageUploader: React.FC<Props> = ({
     </FileInputContainer>
   );
 };
-
-export default CroppedImageUploader;

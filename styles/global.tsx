@@ -113,4 +113,3 @@ export const modalStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
-// todo buttons etc here

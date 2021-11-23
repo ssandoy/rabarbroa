@@ -1,4 +1,4 @@
-import CroppedImageUploader from "../../components/image-uploader";
+import { CroppedImageUploader } from "../image-uploader/CroppedImageUploader";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Image, INDICES } from "../../firebase/types";
@@ -23,7 +23,7 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const ImageUploadPage = () => {
+const ImageUpload = () => {
   const {
     register,
     handleSubmit,
@@ -74,7 +74,6 @@ const ImageUploadPage = () => {
         <CroppedImageUploader
           key={triggerKey.current}
           handleUpdateComplete={setUploadedImageRef}
-          firebaseStorageRef="testbilder"
         />
         {imageUploadError && (
           <ErrorSpan>Du må laste opp bildet før du sender inn!</ErrorSpan>
@@ -101,4 +100,4 @@ const ImageUploadPage = () => {
   );
 };
 
-export default ImageUploadPage;
+export default ImageUpload;

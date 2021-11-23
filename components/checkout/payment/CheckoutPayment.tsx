@@ -35,7 +35,7 @@ const PaymentButton = styled.button`
 export const CheckoutPayment = () => {
   // todo ordreoversikt, paymentoptions.
   // todo betingelseR?
-  const { items, setFormStage } = useShoppingCartContext();
+  const { items, setActiveFormStage } = useShoppingCartContext();
   const { watch } = useFormContext();
   const shippingType = watch("shippingType");
   const shippingPrice = calculateShippingPrice(shippingType);
@@ -71,7 +71,7 @@ export const CheckoutPayment = () => {
         </div>
       </OrderContainer>
       <PaymentOptionContainer>
-        <PaymentButton onClick={() => setFormStage("RECEIPT")}>
+        <PaymentButton onClick={() => setActiveFormStage("RECEIPT")}>
           <VippsPayment />
         </PaymentButton>
       </PaymentOptionContainer>

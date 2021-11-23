@@ -34,20 +34,20 @@ const Form = styled.form`
 
 const calculateCheckoutStatus =
   (formStage: FormStage) =>
-  (activeStage: FormStage): CheckoutStatus => {
-    if (activeStage === formStage) {
+  (activeFormStage: FormStage): CheckoutStatus => {
+    if (activeFormStage === formStage) {
       return "ACTIVE";
     }
     switch (formStage) {
       case "CART":
         return "COMPLETED";
       case "CONTACTINFO":
-        if (activeStage === "CART") {
+        if (activeFormStage === "CART") {
           return "TODO";
         }
         return "COMPLETED";
       case "PAYMENT":
-        if (activeStage == "CART" || activeStage == "CONTACTINFO")
+        if (activeFormStage == "CART" || activeFormStage == "CONTACTINFO")
           return "TODO";
         return "COMPLETED";
       case "RECEIPT":
@@ -56,7 +56,8 @@ const calculateCheckoutStatus =
   };
 
 const ShoppingCart = () => {
-  const { items, formStage, setFormStage } = useShoppingCartContext();
+  const { items, activeFormStage, setActiveFormStage } =
+    useShoppingCartContext();
 
   if (items.length === 0) {
     return (
@@ -81,28 +82,28 @@ const ShoppingCart = () => {
         <CheckoutBasket
           title="HANDLEVOGN"
           formStage="CART"
-          status={calculateCheckoutStatus("CART")(formStage)}
+          status={calculateCheckoutStatus("CART")(activeFormStage)}
         >
-          <HandlevognTable onClick={() => setFormStage("CONTACTINFO")} />
+          <HandlevognTable onClick={() => setActiveFormStage("CONTACTINFO")} />
         </CheckoutBasket>
         <CheckoutBasket
           formStage="CONTACTINFO"
           title="LEVERINGSINFORMASJON"
-          status={calculateCheckoutStatus("CONTACTINFO")(formStage)}
+          status={calculateCheckoutStatus("CONTACTINFO")(activeFormStage)}
         >
           <ContactInfo />
         </CheckoutBasket>
         <CheckoutBasket
           formStage="PAYMENT"
           title="BETALINGSMÅTE"
-          status={calculateCheckoutStatus("PAYMENT")(formStage)}
+          status={calculateCheckoutStatus("PAYMENT")(activeFormStage)}
         >
           <CheckoutPayment />
         </CheckoutBasket>
         <CheckoutBasket
           formStage="RECEIPT"
           title="KVITTERING"
-          status={calculateCheckoutStatus("RECEIPT")(formStage)}
+          status={calculateCheckoutStatus("RECEIPT")(activeFormStage)}
         >
           <Receipt />
         </CheckoutBasket>

@@ -41,7 +41,7 @@ export function getCroppedImage(
             resolve(blob);
           }
         },
-        "image/jpeg", // todo assert..
+        "image/jpeg",
         1
       );
     } catch (err) {
