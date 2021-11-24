@@ -38,7 +38,6 @@ export const CroppedImageUploader: React.FC<Props> = ({
   buttonUploadText = "Last opp",
 }: Props) => {
   const myRef = useRef(null);
-  // todo why on earth does this not throw ts errro
   const [crop, setCrop] = useState<Crop>();
   const [fileName, setFileName] = useState<string>("");
   const [fileLocation, setFileLocation] = useState<string>("");

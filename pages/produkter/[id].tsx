@@ -24,6 +24,7 @@ import {
 } from "../../firebase/domain";
 import { HandlevognModal } from "../../components/handlevogn-modal/HandlevognModal";
 import Custom404 from "../404";
+import { BackArrow } from "../../components/icons/back-arrow/BackArrow";
 
 const Container = styled.div`
   display: grid;
@@ -43,7 +44,7 @@ const Container = styled.div`
 
 const ReturnHeading = styled.h2`
   font-weight: lighter;
-  margin: 12px 0;
+  margin: 12px;
   font-size: 1rem;
 `;
 
@@ -66,6 +67,12 @@ const InfoText = styled.p`
 const Section = styled.section`
   display: flex;
   justify-content: center;
+`;
+
+const ArrowContainer = styled.div`
+  position: absolute;
+  top: 12px;
+  left: -12px;
 `;
 
 type Props = {
@@ -97,7 +104,18 @@ const Id: React.FC<Props> = ({ image }) => {
           <div>
             <ReturnHeading>
               <Link href={PRODUCTS_ROUTE}>
-                <a style={{ color: "black" }}>Tilbake til produkter</a>
+                <a
+                  style={{
+                    color: "black",
+                    position: "relative",
+                    textDecoration: "none",
+                  }}
+                >
+                  Tilbake til produkter
+                  <ArrowContainer>
+                    <BackArrow />
+                  </ArrowContainer>
+                </a>
               </Link>
             </ReturnHeading>
             <StyledImageDiv>

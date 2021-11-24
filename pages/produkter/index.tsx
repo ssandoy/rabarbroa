@@ -79,10 +79,9 @@ const CardLink = styled.a`
 const Text = styled.p`
   margin: 0 0 4px;
   font-size: 0.9rem;
-  font-style: italic; // todo assert
+  font-style: italic;
 `;
 
-// todo move
 // this adds space between every third number
 export const formatPrice = (price: number) => {
   return `kr ${numberFormat(price, 0, " ", " ")}`;

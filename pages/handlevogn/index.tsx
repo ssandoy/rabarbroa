@@ -58,7 +58,6 @@ const calculateCheckoutStatus =
 const ShoppingCart = () => {
   const { items, activeFormStage, setActiveFormStage } =
     useShoppingCartContext();
-  // todo set formStage to CART on mount
   const hasMounted = useRef(false);
 
   // since there could have been changes to cart

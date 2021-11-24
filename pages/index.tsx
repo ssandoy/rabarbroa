@@ -100,7 +100,6 @@ const Home: React.FC<Props> = ({ carouselImages }) => {
 export const getStaticProps: GetStaticProps = async (): Promise<
   GetStaticPropsResult<Props>
 > => {
-  // todo fetch given documents from firebase instead?
   const carouselImages = [
     {
       path: "/images/fargehav.jpg",
