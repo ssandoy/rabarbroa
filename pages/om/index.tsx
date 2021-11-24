@@ -17,7 +17,7 @@ const Signatur = styled.p`
   font-size: 28px;
 `;
 
-const Container = styled.div`
+const Container = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   width: 524px;

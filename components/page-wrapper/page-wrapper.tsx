@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const Container = styled.main`
+const MainContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +9,7 @@ const Container = styled.main`
 `;
 
 const PageWrapper: React.FC = ({ children }) => {
-  return <Container>{children}</Container>;
+  return <MainContainer>{children}</MainContainer>;
 };
 
 export default PageWrapper;

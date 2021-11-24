@@ -11,16 +11,16 @@ const PaymentOptionContainer = styled.div`
   //padding-left: 24px;
 `;
 const OrderContainer = styled.div``;
-// todo style
-const OrderItem = styled.p`
+// todo remove exports when styled Receipt
+export const OrderItem = styled.p`
   padding-left: 24px;
 `;
 
-const Text = styled.p`
+export const Text = styled.p`
   font-family: Arial, sans-serif;
 `;
 
-const SmallText = styled(Text)`
+export const SmallText = styled(Text)`
   font-size: 0.8rem;
   font-weight: lighter;
 `;

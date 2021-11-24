@@ -70,7 +70,7 @@ const CheckoutBasket: React.FC<Props> = ({
     <CheckoutContainer>
       <TitleContainer>
         {isCompleted(status) && (
-          <div style={{ marginRight: 8, marginTop: 4 }}>
+          <div style={{ marginRight: 8, marginTop: 6 }}>
             <CheckIcon />
           </div>
         )}

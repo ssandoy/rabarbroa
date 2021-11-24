@@ -6,7 +6,6 @@ import {
 import styled from "@emotion/styled";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
-import { Heading1 } from "../../styles/global";
 import HandlevognTable from "../../components/checkout/handlevogn/HandlevognTable";
 import { PRODUCTS_ROUTE } from "../../routes/routes";
 import ContactInfo from "../../components/checkout/contact/ContactInfo";
@@ -82,7 +81,6 @@ const ShoppingCart = () => {
 
   return (
     <PageWrapper>
-      <Heading1>Handlevogn</Heading1>
       <Form
         onSubmit={(e) => {
           e.preventDefault();

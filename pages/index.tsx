@@ -15,7 +15,7 @@ type Props = {
 };
 
 const Container = styled.div`
-  padding: 0 3rrem;
+  padding: 0 3rem;
   flex: 1;
   display: flex;
   flex-direction: column;
