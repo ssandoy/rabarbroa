@@ -28,7 +28,6 @@ const ButtonContainer = styled.div`
 
 const ContactInfo = () => {
   const { setActiveFormStage } = useShoppingCartContext();
-  // todo validation
   const {
     register,
     handleSubmit,
@@ -67,7 +66,13 @@ const ContactInfo = () => {
       <InputContainer>
         <Label>Postnummer</Label>
         <Input
-          {...register("contactInfo.postalNumber", { required: true })}
+          {...register("contactInfo.postalNumber", {
+            required: true,
+            pattern: {
+              value: /^\d{4}$/,
+              message: "Skriv inn et nummer på fire siffer",
+            },
+          })}
           onChange={(e) => {
             setPostalNumber(e.target.value);
             setValue("contactInfo.postalNumber", e.target.value, {
@@ -76,7 +81,11 @@ const ContactInfo = () => {
           }}
         />
         {errors.contactInfo?.postalNumber && (
-          <ErrorSpan>Du må skrive inn postnummer</ErrorSpan>
+          <ErrorSpan>
+            {!!errors.contactInfo?.postalNumber.message
+              ? errors.contactInfo?.postalNumber.message
+              : "Du må skrive inn postnummer"}
+          </ErrorSpan>
         )}
       </InputContainer>
       <InputContainer>
@@ -86,9 +95,21 @@ const ContactInfo = () => {
       </InputContainer>
       <InputContainer>
         <Label>E-postadresse</Label>
-        <Input {...register("contactInfo.email", { required: true })} />
+        <Input
+          {...register("contactInfo.email", {
+            required: true,
+            pattern: {
+              value: /\S+@\S+\.\S+/,
+              message: "Gyldig e-post må skrives inn",
+            },
+          })}
+        />
         {errors.contactInfo?.email && (
-          <ErrorSpan>Du må skrive inn e-postadresse</ErrorSpan>
+          <ErrorSpan>
+            {!!errors.contactInfo?.email.message
+              ? errors.contactInfo?.email.message
+              : "Du må skrive inn e-postadresse"}
+          </ErrorSpan>
         )}
       </InputContainer>
       <InputContainer>

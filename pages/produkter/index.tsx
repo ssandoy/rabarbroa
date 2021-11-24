@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Image as ImageType, INDICES } from "../../firebase/types";
-import Image from "next/image";
 import PageWrapper from "../../components/page-wrapper/page-wrapper";
 import numberFormat from "underscore.string/numberFormat";
 import { GetStaticProps, GetStaticPropsResult } from "next";
@@ -13,7 +12,7 @@ import { StyledImage, StyledImageDiv } from "../../styles/global";
 
 const PicturesGrid = styled.ul`
   @media (${device.FOR_TABLET_PORTRAIT_UP}) {
-    padding: 0 2rrem;
+    padding: 0 2rem;
     width: 80vw;
     max-width: 1200px;
   }
@@ -77,6 +76,12 @@ const CardLink = styled.a`
   text-decoration: none;
 `;
 
+const Text = styled.p`
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+  font-style: italic; // todo assert
+`;
+
 // todo move
 // this adds space between every third number
 export const formatPrice = (price: number) => {
@@ -115,9 +120,11 @@ const Pictures: React.FC<Props> = ({ images }) => {
                   />
                 </StyledImageDiv>
                 <TextContainer>
-                  <CardTitle>{image.title}</CardTitle>
-                  <p>{formatSize(image.size)}</p>
-                  <p>{formatPrice(image.price)}</p>
+                  <CardTitle style={{ margin: "12px 0" }}>
+                    {image.title}
+                  </CardTitle>
+                  <Text>{formatSize(image.size)}</Text>
+                  <Text>{formatPrice(image.price)}</Text>
                 </TextContainer>
               </CardLink>
             </Link>

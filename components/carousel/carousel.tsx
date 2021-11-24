@@ -44,7 +44,7 @@ const EmblaSlideStatus = styled.div`
 `;
 
 const EmblaCarousel: React.FC<Props> = ({ images }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel();
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(1);
   const [scrollSnaps, setScrollSnaps] = useState([]);
 

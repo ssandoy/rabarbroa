@@ -5,7 +5,7 @@ import {
 } from "../../context/cart/ShoppingCartContext";
 import styled from "@emotion/styled";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Heading1 } from "../../styles/global";
 import HandlevognTable from "../../components/checkout/handlevogn/HandlevognTable";
 import { PRODUCTS_ROUTE } from "../../routes/routes";
@@ -58,6 +58,17 @@ const calculateCheckoutStatus =
 const ShoppingCart = () => {
   const { items, activeFormStage, setActiveFormStage } =
     useShoppingCartContext();
+  // todo set formStage to CART on mount
+  const hasMounted = useRef(false);
+
+  // since there could have been changes to cart
+  // since last mount we set stage to CART
+  useEffect(() => {
+    if (!hasMounted.current) {
+      setActiveFormStage("CART");
+      hasMounted.current = true;
+    }
+  }, []);
 
   if (items.length === 0) {
     return (

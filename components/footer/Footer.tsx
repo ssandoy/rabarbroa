@@ -23,6 +23,13 @@ const Text = styled.p<{ bold?: boolean }>`
   text-align: center;
 `;
 
+const LinkText = styled.a`
+  font-size: 0.8rem;
+  margin: 4px;
+  text-align: center;
+  color: white;
+`;
+
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -45,7 +52,13 @@ const Footer: React.FC = () => {
       <InfoContainer>
         <Instagram />
         <Text bold={true}>Instagram</Text>
-        <Text>@rabarbroart</Text>
+        <LinkText
+          href="https://www.instagram.com/rabarbroart/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          @rabarbroart
+        </LinkText>
       </InfoContainer>
     </Container>
   );

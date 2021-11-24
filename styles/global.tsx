@@ -83,6 +83,7 @@ export const ErrorSpan = styled.span`
   @media (${device.FOR_PHONE_ONLY}) {
     font-size: 0.7rem;
   }
+  font-size: 0.9rem;
   color: #e63d3d;
   margin-top: 8px;
   margin-bottom: 16px;
