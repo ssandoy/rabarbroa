@@ -82,6 +82,8 @@ const EmblaCarousel: React.FC<Props> = ({ images }) => {
                 height={image.height}
                 width={image.width}
                 alt={image.alt}
+                placeholder="blur"
+                blurDataURL={image.path}
               />
             </EmblaSlide>
           ))}
